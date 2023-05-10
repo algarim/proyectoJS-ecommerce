@@ -1,0 +1,148 @@
+.menu-catalogo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.boton-catalogo {
+    flex: 1;
+}
+
+#boton-filtros {
+    display: none;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 3px;
+    padding: 4px 9px;
+
+    img {
+        height: 1.0rem;
+        margin-right: 6px;
+    }
+}
+
+#boton-ordenar {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.boton-padding {
+    padding: 3px 8px;
+}
+
+.menu-catalogo-font {
+    @include texto(1.0831rem);
+}
+
+#menu-paginas-superior {
+    flex: 1;
+}
+
+.menu-paginas {
+    display: flex;
+    justify-content: center;
+
+    li {
+        display: inline-block;
+        text-align: center;
+        margin: 0 10px 0 0;
+    }
+}
+
+#catalogo {
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 30px 6%;
+
+    section {
+        width: 85vw;
+    }
+}
+
+.articulo-catalogo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #eeeeee;
+    @include sombra-img;
+
+    img {
+        max-width: 100%;
+        object-fit: cover;
+        height: 75%;
+    }
+}
+
+.productos-catalogo {
+    margin: 1.5vw 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2vw;
+}
+
+.articulo-descripcion {
+    padding: 15px 0;
+    text-align: center;
+    height: 25%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h6 {
+        padding: 0;
+        margin: 0;
+        margin-top: 10px;
+        font-size: 1.17rem;
+    }
+
+    p {
+        padding: 0;
+        margin: 0;
+        font-size: 1.17rem;
+    }
+}
+
+.filtros-catalogo {
+    font-size: 1rem;
+    width: 15vw;
+    margin-right: 20px;
+    text-align: left;
+    line-height: 1.3;
+
+    li {
+        margin-top: 10px;
+    }
+}
+
+.filtros-tipos {
+    margin-bottom: 25px;
+    margin-right: 25px;
+
+    ul {
+        margin-left: 10px;
+    }
+}
+
+.main-links-hover {
+    li {
+        &:hover {
+            opacity: 65%;
+            color: $color_hover-links;
+        }
+    }
+}
+
+.boton-agregar-carrito {
+    background-color: $color_azul-suave;
+    margin-bottom: 15px;
+    padding: 5px;
+
+    &:hover{
+        background-color: #d66cac;
+    }
+
+    p{
+        @include texto(1rem);
+    } 
+}

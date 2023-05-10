@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description"
+        content="Objetos sublimados con diseños únicos de tus personajes favoritos. Hacemos envíos a todo el país">
+
+    <title>Santa Punk | Objetos de diseño de tus personajes favoritos</title>
+
+    <!-- FAVICON -->
+    <link rel="shortcut icon" href="assets/img/logo-santa-punk-2.png" type="image/x-icon">
+
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/estilo.css">
+
+    <!-- TIPOGRAFIA -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- BOTON WHATSAPP -->
+    <div class="botonWhatsApp">
+        <a href="https://api.whatsapp.com/send?phone=541155168838" target="_blank"><img
+                src="assets/img/logoWhatsapp.png" alt="Link a WhatsApp"></a>
+    </div>
+
+    <header id="header" class="color-margenes-header-footer">
+
+        <!-- Logo -->
+        <div class="me-auto p-2 me-lg-0" id="header-logo">
+            <a href="index.html">
+                <h1>
+                    <img src="assets/img/tipografia-santa-punk.png" alt="Santa Punk">
+                </h1>
+            </a>
+        </div>
+
+        <!-- Barra de búsqueda y carrito -->
+        <div class="order-lg-3 p-2" id="buscador-y-carrito">
+
+            <!-- BUSQUEDA -->
+
+            <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop"
+                aria-controls="offcanvasTop">
+                <img src="assets/img/search-icon.png" alt="Buscar" name="Buscar">
+            </button>
+
+            <div class="offcanvas offcanvas-top offcanvas-top-color h-auto pb-2" tabindex="-1" id="offcanvasTop"
+                aria-labelledby="offcanvasTopLabel">
+                <div class="offcanvas-header d-flex margenes">
+                    <form class="navbar-buscador m-0 me-1" role="search">
+
+                        <input class="form-control altura" type="search" placeholder="Buscar en la tienda"
+                            aria-label="Search" name="Buscar">
+
+                        <button class="btn form-control altura" type="submit">
+                            <img id="lupa-searchbar" src="assets/img/search-icon.png" alt="Buscar" name="Buscar">
+                        </button>
+                    </form>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+            </div>
+
+            <!-- CARRITO -->
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#carritoModal">
+                <img src="assets/img/bag-icon.png" alt="Carrito">
+            </button>
+        </div>
+
+
+        <!-- Inicio de barra de navegación -->
+        <nav class="navbar navbar-expand-lg order-lg-2 p-2">
+
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#navbarOffcanvasLg" aria-controls="navbarOffcanvasLg">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="offcanvas offcanvas-end navbar-color w-auto p-3" tabindex="-1" id="navbarOffcanvasLg"
+                aria-labelledby="navbarOffcanvasLgLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title offcanvas-logo fw-bold" id="offcanvasExampleLabel">Santa Punk</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <ul class="offcanvas-body menu-nav navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="item-menu-nav nav-item"> <a class="nav-link" href="index.html">Productos</a> </li>    
+                    <li class="item-menu-nav nav-item"> <a class="nav-link" href="pages/nosotros.html">Nosotras</a> </li>
+                    <li class="item-menu-nav nav-item"> <a class="nav-link" href="pages/contacto.html">Contacto</a>
+                    </li>
+                    <li class="item-menu-nav nav-item"> <a class="nav-link" href="pages/preguntas-frecuentes.html">Preguntas frecuentes</a> </li>
+                </ul>
+            </div>
+
+        </nav>
+        <!-- Fin de barra de navegación -->
+
+
+    </header>
+
+    <!-- Modal CARRITO -->
+    <div class="modal fade" id="carritoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fs-5 fw-bold" id="exampleModalLabel">Carrito</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="center-text">Tu carrito está vacío</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Finalizar compra</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <!-- Banner -->
+        <div id="carouselExampleAutoplaying" class="carousel carousel-dark slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="assets/img/banner.png" class="w-100" alt="Santa Punk - Creadora de Obsequios">
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/harry-potter.jpg" class="w-100" alt="Almohadones Harry Potter">
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/stranger-things.jpg" class="w-100" alt="Almohadones Stranger Things">
+                </div>
+                <div class="carousel-item">
+                    <img src="assets/img/alice-in-wonderland.jpg" class="w-100"
+                        alt="Almohadones Alicia en el País de las Maravillas">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <div id="catalogo">
+
+
+            <!-- Inicio del catálogo de productos -->
+            <section>
+    
+                <div class="menu-catalogo">
+        
+                    <!-- Botón FILTROS -->
+    
+                    <div class="boton-catalogo">
+                        <button class="btn d-lg-none d-flex align-items-center" id="boton-filtros" type="button"
+                            data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive"
+                            aria-controls="offcanvasResponsive">
+                            <img src="../assets/img/filter.png" alt="">
+                            <p class="p-0 m-0">Filtros</p>
+                        </button>
+                    </div>
+    
+    
+                    <!-- Botón ORDENAR -->
+                    <div class="boton-catalogo" id="boton-ordenar">
+                        <select name="Ordenar" class="menu-catalogo-font boton-padding">
+                            <option disabled selected>Ordenar</option>
+                            <option value="A-Z">A-Z</option>
+                            <option value="Z-A">A-Z</option>
+                            <option value="Viejo a nuevo">Viejo a nuevo</option>
+                            <option value="Nuevo a viejo">Nuevo a viejo</option>
+                            <option value="Precio ascendente">Precio ascendente</option>
+                            <option value="Precio descendente">Precio descendente</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <!-- Lista de productos del catálogo -->
+                <div class="productos-catalogo">
+                    <article class="articulo-catalogo">
+                        <img src="../assets/img/gato-cheshire-azul.jpg" alt="Gato de Cheshire">
+                        <div class="articulo-descripcion">
+                            <h6 class="articulo-nombre">Gato de Cheshire</h6>
+                            <p>$ 2.600</p>
+                            <button class="btn boton-agregar-carrito">
+                                <p>Agregar al carrito</p>
+                            </button>
+                        </div>
+                    </article>
+    
+                    <article class="articulo-catalogo">
+                        <img src="../assets/img/stitch.jpg" alt="Stitch">
+                        <div class="articulo-descripcion">
+                            <h6>Stitch</h6>
+                            <p>$ 2.600</p>
+                            <button class="btn boton-agregar-carrito">
+                                <p>Agregar al carrito</p>
+                            </button>
+                        </div>
+                    </article>
+    
+                    <article class="articulo-catalogo">
+                        <img src="../assets/img/sailor-moon.jpg" alt="Sailor Moon">
+                        <div class="articulo-descripcion">
+                            <h6>Sailor Moon</h6>
+                            <p>$ 2.600</p>
+                            <button class="btn boton-agregar-carrito">
+                                <p>Agregar al carrito</p>
+                            </button>
+                        </div>
+                    </article>
+    
+    
+                    <article class="articulo-catalogo">
+                        <img src="../assets/img/mario-hongos.jpg" alt="Hongos Mario Bros">
+                        <div class="articulo-descripcion">
+                            <h6>Hongos Mario Bros</h6>
+                            <p>$ 2.600</p>
+                            <button class="btn boton-agregar-carrito">
+                                <p>Agregar al carrito</p>
+                            </button>
+                        </div>
+                    </article>
+    
+    
+                    <article class="articulo-catalogo">
+                        <img src="../assets/img/wednesday.jpg" alt="Wednesday (Merlina) Addams">
+                        <div class="articulo-descripcion">
+                            <h6>Wednesday Addams</h6>
+                            <p>$ 2.600</p>
+                            <button class="btn boton-agregar-carrito">
+                                <p>Agregar al carrito</p>
+                            </button>
+                        </div>
+                    </article>
+    
+    
+                    <article class="articulo-catalogo">
+                        <img src="../assets/img/deadpool.jpg" alt="Deadpool">
+                        <div class="articulo-descripcion">
+                            <h6>Deadpool</h6>
+                            <p>$ 2.600</p>
+                            <button class="btn boton-agregar-carrito">
+                                <p>Agregar al carrito</p>
+                            </button>
+                        </div>
+                    </article>
+    
+    
+    
+                    <article class="articulo-catalogo">
+                        <img src="../assets/img/cuaderno-totoro.jpg" alt="Cuaderno Totoro">
+                        <div class="articulo-descripcion">
+                            <h6>Cuaderno Totoro</h6>
+                            <p>$ 2.500</p>
+                            <button class="btn boton-agregar-carrito">
+                                <p>Agregar al carrito</p>
+                            </button>
+                        </div>
+                    </article>
+    
+    
+                    <article class="articulo-catalogo">
+                        <img src="../assets/img/cuaderno-harry-potter.jpg" alt="Cuaderno Harry Potter">
+                        <div class="articulo-descripcion">
+                            <h6>Cuaderno Harry Potter</h6>
+                            <p>$ 2.500</p>
+                            <button class="btn boton-agregar-carrito">
+                                <p>Agregar al carrito</p>
+                            </button>
+                        </div>
+                    </article>
+    
+                    <article class="articulo-catalogo">
+                        <img src="../assets/img/bmo.jpg" alt="BMO">
+                        <div class="articulo-descripcion">
+                            <h6>BMO (Adventure Time)</h6>
+                            <p>$ 2.900</p>
+                            <button class="btn boton-agregar-carrito">
+                                <p>Agregar al carrito</p>
+                            </button>
+                        </div>
+                    </article>
+    
+                    <article class="articulo-catalogo">
+                        <img src="../assets/img/loki.jpg" alt="Loki">
+                        <div class="articulo-descripcion">
+                            <h6>Loki</h6>
+                            <p>$ 2.600</p>
+                            <button class="btn boton-agregar-carrito">
+                                <p>Agregar al carrito</p>
+                            </button>
+                        </div>
+                    </article>
+    
+                    <article class="articulo-catalogo">
+                        <img src="../assets/img/hedwig.jpg" alt="Hedwig">
+                        <div class="articulo-descripcion">
+                            <h6>Hedwig</h6>
+                            <p>$ 2.600</p>
+                            <button class="btn boton-agregar-carrito">
+                                <p>Agregar al carrito</p>
+                            </button>
+                        </div>
+                    </article>
+    
+                    <article class="articulo-catalogo">
+                        <img src="../assets/img/harry-torta.jpg" alt="Torta de cumpleaños de Harry">
+                        <div class="articulo-descripcion">
+                            <h6>Torta de cumpleaños de Harry</h6>
+                            <p>$ 2.600</p>
+                            <button class="btn boton-agregar-carrito">
+                                <p>Agregar al carrito</p>
+                            </button>
+                        </div>
+                    </article>
+    
+    
+                    <article class="articulo-catalogo">
+                        <img src="../assets/img/harry-volando.jpg" alt="Harry en escoba">
+                        <div class="articulo-descripcion">
+                            <h6>Harry en escoba</h6>
+                            <p>$ 2.600</p>
+                            <button class="btn boton-agregar-carrito">
+                                <p>Agregar al carrito</p>
+                            </button>
+                        </div>
+                    </article>
+    
+                    <article class="articulo-catalogo">
+                        <img src="../assets/img/harry-potter-personajes.jpg" alt="Harry, Ron y Hermione">
+                        <div class="articulo-descripcion">
+                            <h6>Combo Harry, Ron y Hermione</h6>
+                            <p>$ 7.600</p>
+                            <button class="btn boton-agregar-carrito">
+                                <p>Agregar al carrito</p>
+                            </button>
+                        </div>
+                    </article>
+    
+                    <article class="articulo-catalogo">
+                        <img src="../assets/img/groot.jpg" alt="Groot">
+                        <div class="articulo-descripcion">
+                            <h6>Groot</h6>
+                            <p>$ 2.600</p>
+                            <button class="btn boton-agregar-carrito">
+                                <p>Agregar al carrito</p>
+                            </button>
+                        </div>
+                    </article>
+    
+                    <article class="articulo-catalogo">
+                        <img src="../assets/img/alicia.jpg" alt="Alicia">
+                        <div class="articulo-descripcion">
+                            <h6>Alicia</h6>
+                            <p>$ 2.600</p>
+                            <button class="btn boton-agregar-carrito">
+                                <p>Agregar al carrito</p>
+                            </button>
+                        </div>
+                    </article>
+                </div>
+    
+            </section>
+            <!-- Fin del catálogo de productos -->
+    
+    
+            <!-- FILTROS PARA EL CATALOGO -->
+            <div class="offcanvas-lg offcanvas-start w-auto p-3" tabindex="-1" id="offcanvasResponsive"
+                aria-labelledby="offcanvasResponsiveLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title fw-bold mayus" id="offcanvasResponsiveLabel">Filtros</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                        data-bs-target="#offcanvasResponsive" aria-label="Close"></button>
+                </div>
+                <div class="filtros-catalogo offcanvas-body d-block w-auto">
+                    <h2 class="d-lg-block d-none mb-3">Filtros</h2>
+                    <div class="filtros-tipos">
+                        <h3>Especiales</h3>
+                        <ul class="main-links-hover">
+                            <li> <a href=""> ¡Con descuento! </a> </li>
+                            <li> <a href="lo-nuevo.html"> Lo nuevo </a> </li>
+                            <li> <a href="lo-mas-vendido.html"> Lo más vendido </a> </li>
+                            <li> <a href="combos.html"> Combos </a> </li>
+                            <li> <a href=""> Ideas para regalo </a> </li>
+                        </ul>
+                    </div>
+    
+                    <div class="filtros-tipos">
+                        <h3>Objetos</h3>
+                        <ul class="main-links-hover">
+                            <li> <a href=""> Almohadones </a> </li>
+                            <li> <a href=""> Cartucheras </a> </li>
+                            <li> <a href=""> Cuadernos </a> </li>
+                            <li> <a href=""> Indumentaria </a> </li>
+                            <li> <a href=""> Tazas </a> </li>
+                        </ul>
+                    </div>
+    
+                    <div class="filtros-tipos">
+                        <h3>Temáticas</h3>
+                        <ul class="main-links-hover">
+                            <li> <a href=""> Alicia en el País de las Maravillas </a> </li>
+                            <li> <a href=""> Demon Slayer </a> </li>
+                            <li> <a href=""> El Señor de los Anillos </a> </li>
+                            <li> <a href=""> Harry Potter </a> </li>
+                            <li> <a href=""> Mario Bros </a> </li>
+                            <li> <a href=""> Marvel </a> </li>
+                            <li> <a href=""> Naruto </a> </li>
+                            <li> <a href=""> Sailor Moon </a> </li>
+                            <li> <a href=""> Star Wars </a> </li>
+                            <li> <a href=""> Stranger Things </a> </li>
+                            <li> <a href=""> Studio Ghibli </a> </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+
+    </main>
+
+    <footer class="color-margenes-header-footer">
+
+        <div id="footer-logo">
+            <a href="index.html">
+                <img src="assets/img/logo-santa-punk-2.png" alt="Logo Santa Punk">
+            </a>
+        </div>
+
+
+        <section id="footer-contenido-principal">
+
+            <div class="footer-subseccion">
+                <h3>CONTACTANOS</h3>
+                <ul>
+                    <li>
+                        <a href="mailto:infosantapunk@gmail.com"><img src="assets/img/gmail-icon.png" alt="Mail">
+                            infosantapunk@gmail.com</a>
+                    </li>
+                    <li>
+                        <a href="https://api.whatsapp.com/send?phone=541155168838" target="_blank"> <img
+                                src="assets/img/whatsapp-icon.png" alt="WhatsApp"> +54 9 11 5516-8838 </a>
+                    </li>
+                    <li>
+                        <a href="pages/contacto.html">Formulario de contacto</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-subseccion">
+                <h3>SEGUINOS</h3>
+                <ul>
+                    <li>
+                        <a href="https://www.facebook.com/santa.punkk/" target="_blank">
+                            <img src="assets/img/facebook-icon.png" alt=""> Facebook
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/santa.punk/" target="_blank">
+                            <img src="assets/img/instagram-icon.png" alt=""> Instagram
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div id="newsletter"> <!-- Recuadro Newsletter -->
+                <h3>NEWSLETTER</h3>
+                <p>¡Suscribite para enterarte de novedades, ofertas y promociones!</p>
+                <form id="newsletter-form">
+                    <input type="text" name="email" placeholder="Dejanos tu email" id="newsletter-mail">
+                    <input type="submit" value="Enviar">
+                </form>
+            </div>
+
+        </section>
+
+    </footer>
+
+    <!-- JS BOOTSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+
+    <!-- JS PROPIO -->
+    <script src="main.js"></script>
+
+</body>
+
+</html>

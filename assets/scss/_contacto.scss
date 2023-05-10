@@ -1,0 +1,70 @@
+.margenes {
+    margin-left: 6%;
+    margin-right: 6%;
+    margin-top: 15px;
+}
+
+#contacto-contenido {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    section {
+        margin-bottom: 30px;
+    }
+}
+
+.datos-formulario {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+#contacto-seccionA {
+    flex: 1;
+    margin-right: 2vw;
+}
+
+#contacto-seccionB {
+    flex: 1;
+
+    a {
+        white-space: nowrap;
+    }
+}
+
+.item-formulario {
+    @include texto(1.17rem);
+
+    padding: 7px;
+    margin: 10px 0;
+    width: 600px;
+}
+
+.botones-formulario {
+    input {
+        @include texto(1.25rem);
+        
+        padding: 3px 6px;
+        margin-right: 5px;
+    }
+}
+
+.espacio-dsps-de-parrafo {
+    margin-bottom: 8px;
+}
+
+.contacto-tamano-iconos {
+    img {
+        width: 24px;
+        margin-right: 10px;
+    }
+}
+
+.mayor-interlineado {
+    line-height: 2;
+}
+
+.center-text {
+    text-align: center;
+}

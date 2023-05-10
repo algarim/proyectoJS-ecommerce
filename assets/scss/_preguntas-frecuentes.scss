@@ -1,0 +1,16 @@
+.pregunta-respuesta {
+	margin: 50px 10px;
+
+	p {
+		font-size: 1.0831rem;
+	}
+
+	a {
+		color: rgb(50, 50, 255);
+		text-decoration: underline;
+
+		&:hover {
+			opacity: 0.82;
+		}
+	}
+}
