@@ -133,16 +133,19 @@
     }
 }
 
-.boton-agregar-carrito {
+.boton-carrito {
     background-color: $color_azul-suave;
     margin-bottom: 15px;
     padding: 5px;
 
-    &:hover{
+    &:hover {
         background-color: #d66cac;
     }
 
-    p{
-        @include texto(1rem);
-    } 
+    @include texto(1rem);
+}
+
+.hover-rosa:hover {
+    background-color: $color_hover-links;
+    opacity: 0.65;
 }

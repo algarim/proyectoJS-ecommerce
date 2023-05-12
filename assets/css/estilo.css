@@ -432,18 +432,21 @@ a {
   color: #dc0083;
 }
 
-.boton-agregar-carrito {
+.boton-carrito {
   background-color: rgb(166, 230, 255);
   margin-bottom: 15px;
   padding: 5px;
-}
-.boton-agregar-carrito:hover {
-  background-color: #d66cac;
-}
-.boton-agregar-carrito p {
   font-family: "Quicksand", sans-serif;
   font-size: 1rem;
   font-weight: normal;
+}
+.boton-carrito:hover {
+  background-color: #d66cac;
+}
+
+.hover-rosa:hover {
+  background-color: #dc0083;
+  opacity: 0.65;
 }
 
 .margenes {

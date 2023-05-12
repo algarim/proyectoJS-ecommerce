@@ -118,11 +118,15 @@
                     <h5 class="modal-title fs-5 fw-bold" id="exampleModalLabel">Carrito</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div id="contenido-carrito" class="modal-body">
                     <p class="center-text">Tu carrito está vacío</p>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Finalizar compra</button>
+                <hr>
+                <h6 class="center-text fs-5 fw-bold">Total: $ <span id="precio-final">0</span></h6>
+
+                <div class="modal-footer d-flex justify-content-between">
+                    <button type="button" id="vaciar-carrito" class="btn btn-primary hover-rosa">Vaciar carrito</button>
+                    <button type="button" id="finalizar-compra" class="btn btn-primary hover-rosa">Finalizar compra</button>
                 </div>
             </div>
         </div>
@@ -193,189 +197,8 @@
                 </div>
     
                 <!-- Lista de productos del catálogo -->
-                <div class="productos-catalogo">
-                    <article class="articulo-catalogo">
-                        <img src="assets/img/gato-cheshire-azul.jpg" alt="Gato de Cheshire">
-                        <div class="articulo-descripcion">
-                            <h6 class="articulo-nombre">Gato de Cheshire</h6>
-                            <p>$ 2.600</p>
-                            <button class="btn boton-agregar-carrito">
-                                <p>Agregar al carrito</p>
-                            </button>
-                        </div>
-                    </article>
-    
-                    <article class="articulo-catalogo">
-                        <img src="assets/img/stitch.jpg" alt="Stitch">
-                        <div class="articulo-descripcion">
-                            <h6>Stitch</h6>
-                            <p>$ 2.600</p>
-                            <button class="btn boton-agregar-carrito">
-                                <p>Agregar al carrito</p>
-                            </button>
-                        </div>
-                    </article>
-    
-                    <article class="articulo-catalogo">
-                        <img src="assets/img/sailor-moon.jpg" alt="Sailor Moon">
-                        <div class="articulo-descripcion">
-                            <h6>Sailor Moon</h6>
-                            <p>$ 2.600</p>
-                            <button class="btn boton-agregar-carrito">
-                                <p>Agregar al carrito</p>
-                            </button>
-                        </div>
-                    </article>
-    
-    
-                    <article class="articulo-catalogo">
-                        <img src="assets/img/mario-hongos.jpg" alt="Hongos Mario Bros">
-                        <div class="articulo-descripcion">
-                            <h6>Hongos Mario Bros</h6>
-                            <p>$ 2.600</p>
-                            <button class="btn boton-agregar-carrito">
-                                <p>Agregar al carrito</p>
-                            </button>
-                        </div>
-                    </article>
-    
-    
-                    <article class="articulo-catalogo">
-                        <img src="assets/img/wednesday.jpg" alt="Wednesday (Merlina) Addams">
-                        <div class="articulo-descripcion">
-                            <h6>Wednesday Addams</h6>
-                            <p>$ 2.600</p>
-                            <button class="btn boton-agregar-carrito">
-                                <p>Agregar al carrito</p>
-                            </button>
-                        </div>
-                    </article>
-    
-    
-                    <article class="articulo-catalogo">
-                        <img src="assets/img/deadpool.jpg" alt="Deadpool">
-                        <div class="articulo-descripcion">
-                            <h6>Deadpool</h6>
-                            <p>$ 2.600</p>
-                            <button class="btn boton-agregar-carrito">
-                                <p>Agregar al carrito</p>
-                            </button>
-                        </div>
-                    </article>
-    
-    
-    
-                    <article class="articulo-catalogo">
-                        <img src="assets/img/cuaderno-totoro.jpg" alt="Cuaderno Totoro">
-                        <div class="articulo-descripcion">
-                            <h6>Cuaderno Totoro</h6>
-                            <p>$ 2.500</p>
-                            <button class="btn boton-agregar-carrito">
-                                <p>Agregar al carrito</p>
-                            </button>
-                        </div>
-                    </article>
-    
-    
-                    <article class="articulo-catalogo">
-                        <img src="assets/img/cuaderno-harry-potter.jpg" alt="Cuaderno Harry Potter">
-                        <div class="articulo-descripcion">
-                            <h6>Cuaderno Harry Potter</h6>
-                            <p>$ 2.500</p>
-                            <button class="btn boton-agregar-carrito">
-                                <p>Agregar al carrito</p>
-                            </button>
-                        </div>
-                    </article>
-    
-                    <article class="articulo-catalogo">
-                        <img src="assets/img/bmo.jpg" alt="BMO">
-                        <div class="articulo-descripcion">
-                            <h6>BMO (Adventure Time)</h6>
-                            <p>$ 2.900</p>
-                            <button class="btn boton-agregar-carrito">
-                                <p>Agregar al carrito</p>
-                            </button>
-                        </div>
-                    </article>
-    
-                    <article class="articulo-catalogo">
-                        <img src="assets/img/loki.jpg" alt="Loki">
-                        <div class="articulo-descripcion">
-                            <h6>Loki</h6>
-                            <p>$ 2.600</p>
-                            <button class="btn boton-agregar-carrito">
-                                <p>Agregar al carrito</p>
-                            </button>
-                        </div>
-                    </article>
-    
-                    <article class="articulo-catalogo">
-                        <img src="assets/img/hedwig.jpg" alt="Hedwig">
-                        <div class="articulo-descripcion">
-                            <h6>Hedwig</h6>
-                            <p>$ 2.600</p>
-                            <button class="btn boton-agregar-carrito">
-                                <p>Agregar al carrito</p>
-                            </button>
-                        </div>
-                    </article>
-    
-                    <article class="articulo-catalogo">
-                        <img src="assets/img/harry-torta.jpg" alt="Torta de cumpleaños de Harry">
-                        <div class="articulo-descripcion">
-                            <h6>Torta de cumpleaños de Harry</h6>
-                            <p>$ 2.600</p>
-                            <button class="btn boton-agregar-carrito">
-                                <p>Agregar al carrito</p>
-                            </button>
-                        </div>
-                    </article>
-    
-    
-                    <article class="articulo-catalogo">
-                        <img src="assets/img/harry-volando.jpg" alt="Harry en escoba">
-                        <div class="articulo-descripcion">
-                            <h6>Harry en escoba</h6>
-                            <p>$ 2.600</p>
-                            <button class="btn boton-agregar-carrito">
-                                <p>Agregar al carrito</p>
-                            </button>
-                        </div>
-                    </article>
-    
-                    <article class="articulo-catalogo">
-                        <img src="assets/img/harry-potter-personajes.jpg" alt="Harry, Ron y Hermione">
-                        <div class="articulo-descripcion">
-                            <h6>Combo Harry, Ron y Hermione</h6>
-                            <p>$ 7.600</p>
-                            <button class="btn boton-agregar-carrito">
-                                <p>Agregar al carrito</p>
-                            </button>
-                        </div>
-                    </article>
-    
-                    <article class="articulo-catalogo">
-                        <img src="assets/img/groot.jpg" alt="Groot">
-                        <div class="articulo-descripcion">
-                            <h6>Groot</h6>
-                            <p>$ 2.600</p>
-                            <button class="btn boton-agregar-carrito">
-                                <p>Agregar al carrito</p>
-                            </button>
-                        </div>
-                    </article>
-    
-                    <article class="articulo-catalogo">
-                        <img src="assets/img/alicia.jpg" alt="Alicia">
-                        <div class="articulo-descripcion">
-                            <h6>Alicia</h6>
-                            <p>$ 2.600</p>
-                            <button class="btn boton-agregar-carrito">
-                                <p>Agregar al carrito</p>
-                            </button>
-                        </div>
-                    </article>
+                <div id="lista-productos" class="productos-catalogo">
+                    
                 </div>
     
             </section>

@@ -1,98 +1,131 @@
-// Defino una clase que me permita crear un objeto para cada producto, con nombre, precio y cantidad de unidades del producto en el carrito (empieza siempre en 0)
-class Producto {
-    constructor(nombre, precio) {
-        this.nombre = nombre;
-        this.precio = Number(precio);
-        this.cantidadEnCarrito = 0;
-    }
-}
+// Defino una variable que acceda al contenido del carrito en el HTML
 
-// Defino un objeto para cada producto
+let carritoContenido = document.getElementById("contenido-carrito");
 
-const almohadon = new Producto("Almohadón Harry Potter", 2600);
-const cuaderno = new Producto("Cuaderno Totoro", 2500);
-const combo = new Producto("Combo Mario Bros", 7600);
-const almohadon2 = new Producto ("Almohadon Totoro", 2600)
+// Creo un array para que vaya acumulando los productos del carrito
+let carrito = [];
 
-// Creo un array con todos los productos
-
-const listaDeProductos = [almohadon, cuaderno, combo, almohadon2];
-
-// Usando el método map, creo un array que contenga todos los enteros desde 1 hasta la longitud del array
-
-indicesDeProductos = listaDeProductos.map( (producto) => listaDeProductos.indexOf(producto) + 1 );
-
-// Defino una función que liste en un string los elementos de un array de productos con sus precios (a modo de catálogo)
-
-function listarProductos(lista) {
-    let productosConPrecio = []; // array que va a ir agregando cada trozo de string, sobre el que después usaremos el método join
-    for (let i = 0; i < lista.length; i++) {
-        productosConPrecio.push(" " + (i + 1) + ". " + listaDeProductos[i].nombre + " - $ " + listaDeProductos[i].precio);
-    }
-    return productosConPrecio.join("\n");
-}
-
-// Defino una función que liste en un string los productos agregados al carrito con sus respectivas cantidades
-
-function verCarrito(lista) {
-    let carrito = "";
-    for (let i = 0; i < lista.length; i++) {
-        if (lista[i].cantidadEnCarrito > 0) {
-            carrito = carrito + "\n" + lista[i].nombre + " x " + lista[i].cantidadEnCarrito;
-        }
-    }
-    if (carrito === "") {
-        carrito = "Tu carrito está vacío";
-    }
-    return carrito;
-}
+// Accedo al HTML a través de una variable, para modificar el total de la compra
+let totalCompra = document.getElementById("precio-final");
 
 // Defino una variable que lleve el precio total acumulado
-
 let precioTotal = 0;
 
 // Defino una función que sume una cantidad al precio total, y después muestre el nuevo precio total
-
 function sumarPrecio(precioProducto) {
     precioTotal = precioTotal + precioProducto;
-    alert("El precio total de su compra hasta el momento es de $" + precioTotal);
 }
 
-// Defino dos variables que guardan las opciones que elige el usuario
 
-let seleccionBienvenida;
-let seleccionCarrito;
+// Defino una clase que me permita crear un objeto para cada producto, con nombre, ruta de la imagen, precio y cantidad de unidades del producto en el carrito
 
-// Defino el ciclo por el cual el usuario agrega productos al carrito
-
-/* while (seleccionCarrito != 3) {
-    seleccionBienvenida = Number(prompt("¡Bienvenido a la tienda de Santa Punk! \n\nElegí un producto para agregar al carrito: \n\n" + listarProductos(listaDeProductos) + "\n\nTambién podés acceder al carrito para revisar los productos elegidos y ver el precio final: \n\n" + (listaDeProductos.length + 1) + ". Ver carrito"));
-
-    for (let i = 0; i < listaDeProductos.length; i++) {
-        if (seleccionBienvenida == (i + 1) ) {
-            sumarPrecio(listaDeProductos[i].precio);
-            listaDeProductos[i].cantidadEnCarrito = listaDeProductos[i].cantidadEnCarrito + 1;
-            break;
-        }
+class Producto {
+    constructor(nombre, imagen, precio) {
+        this.nombre = nombre;
+        this.imagen = imagen;
+        this.precio = Number(precio);
+        this.cantidadEnCarrito;
     }
 
-    if (seleccionBienvenida == (listaDeProductos.length + 1) ) {
-        seleccionCarrito = Number(prompt(verCarrito(listaDeProductos) + "\n     Precio total: $ " + precioTotal + "\n\n 1. Elegir otro producto \n 2. Vaciar carrito \n 3. Finalizar compra"))
+    // defino un método para agregar el producto al array carrito y sumar su precio al costo total
+    agregarCarrito() {
+        this.cantidadEnCarrito = this.cantidadEnCarrito + 1 || 1;
 
-        if (seleccionCarrito == 2) {
-            precioTotal = 0;
-            listaDeProductos.forEach( (producto) => producto.cantidadEnCarrito = 0 );
-            alert("Se vació el carrito")
+        if (!carrito.includes(this)) {
+            carrito.push(this);
         }
-        else if ((seleccionCarrito != 1) && (seleccionCarrito != 3)) {
-            alert("Comando no reconocido. Por favor, ingresá el número correspondiente a la opción elegida.")
-        }
-    }
-    else if ( !indicesDeProductos.includes(seleccionBienvenida)) {
-        alert("Comando no reconocido. Por favor, ingresá el número correspondiente a la opción elegida.");
+
+        sumarPrecio(this.precio);
+        totalCompra.innerHTML = `${precioTotal}`;
     }
 
+    quitarCarrito() {
+        this.cantidadEnCarrito = 0;
+        sumarPrecio(-this.precio);
+    }
 }
 
-alert("El precio total de su compra es $" + precioTotal + "\n\n¡Gracias por elegirnos!");
-*/
+
+// Defino un objeto para cada producto
+
+const almohadonCheshire = new Producto("Gato de Cheshire", "assets/img/gato-cheshire-azul.jpg", 2600);
+
+const almohadonStitch = new Producto("Stitch", "assets/img/stitch.jpg", 2600);
+
+const almohadonHongos = new Producto("Hongos Mario Bros", "assets/img/mario-hongos.jpg", 2600);
+
+const almohadonSailorMoon = new Producto("Sailor Moon", "assets/img/sailor-moon.jpg", 2600);
+
+const comboHP = new Producto("Combo Harry, Ron y Hermione", "assets/img/harry-potter-personajes.jpg", 7600);
+
+const cuadernoTotoro = new Producto("Cuaderno Totoro", "assets/img/cuaderno-totoro.jpg", 2500);
+
+const comboMario = new Producto("Combo Mario Bros", "assets/img/mario-bros.jpg", 7600);
+
+const almohadonHedwig = new Producto("Hedwig", "assets/img/hedwig.jpg", 2600);
+
+const almohadonHPTorta = new Producto("Torta de cumpleaños de Harry", "assets/img/harry-torta.jpg", 2600);
+
+const cuadernoHP = new Producto("Cuaderno Harry Potter", "assets/img/cuaderno-harry-potter.jpg", 2500);
+
+const almohadonLoki = new Producto("Torta de cumpleaños de Harry", "assets/img/loki.jpg", 2600);
+
+const almohadonAlicia = new Producto("Alicia", "assets/img/alicia.jpg", 2600);
+
+
+// Creo un array con todos los productos
+
+const listaDeProductos = [comboMario, almohadonHongos, comboHP, almohadonHPTorta, almohadonHedwig, cuadernoHP, cuadernoTotoro, almohadonCheshire, almohadonAlicia, almohadonStitch, almohadonLoki, almohadonSailorMoon];
+
+// Usando el método map, creo un array que contenga todos los enteros desde 1 hasta la longitud del array
+
+indicesDeProductos = listaDeProductos.map((producto) => listaDeProductos.indexOf(producto) + 1);
+
+// Accedo al catalogo del HTML
+
+let catalogo = document.getElementById("lista-productos");
+
+// Defino una función que liste los productos en el catálogo
+
+function listarProductos(lista) {
+    for (let i = 0; i < lista.length; i++) {
+        let articulo = document.createElement("article");
+        articulo.className = "articulo-catalogo";
+        articulo.innerHTML = `
+        <img src= \"${lista[i].imagen}\" alt="${lista[i].nombre}">
+        <div class="articulo-descripcion">
+            <h6 class="articulo-nombre"> ${lista[i].nombre} </h6>
+            <p>$ ${lista[i].precio}</p>
+            <button class="btn boton-carrito boton-agregar-carrito">
+                Agregar al carrito
+            </button>
+        </div>
+        `
+        catalogo.append(articulo);
+    }
+}
+
+// Agrego los productos al catálogo usando la función anterior
+listarProductos(listaDeProductos);
+
+// Defino un evento que agregue un producto al carrito al apretar el botón
+let botonCarrito = document.getElementsByClassName("boton-agregar-carrito");
+
+for (let i = 0; i < listaDeProductos.length; i++) {
+    botonCarrito[i].addEventListener("click", agregarCarrito)
+
+    function agregarCarrito() {
+        listaDeProductos[i].agregarCarrito();
+        carritoContenido.innerHTML = ""; // borro contenido del carrito
+
+        // vuelvo a agregar cada elemento al carrito
+        for (const producto of carrito) {
+            let itemCarrito = document.createElement("p");
+            itemCarrito.className = "center-text";
+            itemCarrito.innerHTML = `
+            ${producto.nombre} (${producto.cantidadEnCarrito}) - $ ${producto.precio *  producto.cantidadEnCarrito}
+            `
+            carritoContenido.append(itemCarrito);
+        }
+    }
+};
