@@ -158,7 +158,8 @@
 
 .descripcion-articulo-carrito {
     @include texto(1rem);
-    margin-right: 15px;
+    margin-right: 20px;
+    flex: 1;
 }
 
 .cantidad-item-carrito {
@@ -167,6 +168,7 @@
     align-items: center;
     border: 1px solid $color_azul-suave;
     height: 37px;
+    width: 94.52;
 
     button {
         background-color: $color_azul-suave;

@@ -44,17 +44,16 @@ class Producto {
         // Creo un array con los nombres de los productos en el carrito
         let nombresCarrito = carrito.map( (producto) => producto.nombre);
 
-        // A partir de ese array, chequeo si el producto ya está en el carrito. Si está, lo reemplazo con el objeto actualizado
+        // A partir de ese array, chequeo si el producto ya está en el carrito. Si está, actualizo la cantidad
 
-        let indiceProducto = nombresCarrito.indexOf(this.nombre);
 
-        if (indiceProducto == -1) {
-            this.cantidadEnCarrito = 1;
+
+        
+
+        this.cantidadEnCarrito = productoEnCarrito.cantidadEnCarrito + 1 || 1;
+
+        if (!carrito.includes(this)) {
             carrito.push(this);
-        }
-        else {
-            this.cantidadEnCarrito = carrito[indiceProducto].cantidadEnCarrito + 1;
-            carrito[indiceProducto] = this;
         }
 
         localStorage.setItem("carrito", JSON.stringify(carrito));
