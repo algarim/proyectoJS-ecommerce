@@ -451,14 +451,15 @@ a {
 
 .item-carrito {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
 .descripcion-articulo-carrito {
   font-family: "Quicksand", sans-serif;
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: normal;
+  margin-right: 15px;
 }
 
 .cantidad-item-carrito {
@@ -466,19 +467,25 @@ a {
   justify-content: space-evenly;
   align-items: center;
   border: 1px solid rgb(166, 230, 255);
-  height: 40px;
+  height: 37px;
 }
 .cantidad-item-carrito button {
   background-color: rgb(166, 230, 255);
   border-radius: 0;
-  padding: 0.375rem 0.75rem;
+  padding: 0.3rem 0.7rem;
+  font-family: "Quicksand", sans-serif;
+  font-size: 1rem;
+  font-weight: normal;
 }
 .cantidad-item-carrito button:hover {
   background-color: #d66cac;
 }
 .cantidad-item-carrito p {
   margin-top: 16px;
-  padding: 0.25rem 0.9rem;
+  padding: 0.2rem 0.7rem;
+  font-family: "Quicksand", sans-serif;
+  font-size: 1rem;
+  font-weight: normal;
 }
 
 .margenes {

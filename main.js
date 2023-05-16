@@ -68,7 +68,7 @@ const almohadonHPTorta = new Producto("Torta de cumpleaños de Harry", "assets/i
 
 const cuadernoHP = new Producto("Cuaderno Harry Potter", "assets/img/cuaderno-harry-potter.jpg", 2500);
 
-const almohadonLoki = new Producto("Torta de cumpleaños de Harry", "assets/img/loki.jpg", 2600);
+const almohadonLoki = new Producto("Loki", "assets/img/loki.jpg", 2600);
 
 const almohadonAlicia = new Producto("Alicia", "assets/img/alicia.jpg", 2600);
 
@@ -120,10 +120,28 @@ for (let i = 0; i < listaDeProductos.length; i++) {
 
         // vuelvo a agregar cada elemento al carrito
         for (const producto of carrito) {
-            let itemCarrito = document.createElement("p");
-            itemCarrito.className = "center-text";
+            let itemCarrito = document.createElement("div");
+            itemCarrito.className = "card mb-3";
+            itemCarrito.style.maxWidth = "540px"
             itemCarrito.innerHTML = `
-            ${producto.nombre} (${producto.cantidadEnCarrito}) - $ ${producto.precio *  producto.cantidadEnCarrito}
+                        <div class="row g-0 d-flex align-items-center">
+                            <div class="col-md-4">
+                                <img src=\"${producto.imagen}\" class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body item-carrito">
+                                    <div class="descripcion-articulo-carrito center-text">
+                                        <p class="card-title">${producto.nombre}</p>
+                                        <p class="card-text">$ ${producto.precio * producto.cantidadEnCarrito}</p>
+                                    </div>
+                                    <div class="cantidad-item-carrito">
+                                        <button class="cart-item_subtract btn">-</button>
+                                        <p class="cantidad-item">${producto.cantidadEnCarrito}</p>
+                                        <button class="cart-item_add btn">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
             `
             carritoContenido.append(itemCarrito);
         }
