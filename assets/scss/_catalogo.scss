@@ -135,7 +135,7 @@
 
 .boton-carrito {
     background-color: $color_azul-suave;
-    margin-bottom: 15px;
+    margin-bottom: 16px;
     padding: 5px;
 
     &:hover {
@@ -148,4 +148,37 @@
 .hover-rosa:hover {
     background-color: $color_hover-links;
     opacity: 0.65;
+}
+
+.item-carrito {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.descripcion-articulo-carrito {
+    @include texto(1.05rem);
+}
+
+.cantidad-item-carrito {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border: 1px solid $color_azul-suave;
+    height: 40px;
+
+    button {
+        background-color: $color_azul-suave;
+        border-radius: 0;
+        padding: 0.375rem 0.75rem;
+
+        &:hover {
+            background-color: #d66cac;
+        }
+    }
+
+    p {
+        margin-top: 16px;
+        padding: 0.25rem 0.9rem;
+    }
 }

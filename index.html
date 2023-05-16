@@ -96,11 +96,13 @@
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <ul class="offcanvas-body menu-nav navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="item-menu-nav nav-item"> <a class="nav-link" href="index.html">Productos</a> </li>    
-                    <li class="item-menu-nav nav-item"> <a class="nav-link" href="pages/nosotros.html">Nosotras</a> </li>
+                    <li class="item-menu-nav nav-item"> <a class="nav-link" href="index.html">Productos</a> </li>
+                    <li class="item-menu-nav nav-item"> <a class="nav-link" href="pages/nosotros.html">Nosotras</a>
+                    </li>
                     <li class="item-menu-nav nav-item"> <a class="nav-link" href="pages/contacto.html">Contacto</a>
                     </li>
-                    <li class="item-menu-nav nav-item"> <a class="nav-link" href="pages/preguntas-frecuentes.html">Preguntas frecuentes</a> </li>
+                    <li class="item-menu-nav nav-item"> <a class="nav-link"
+                            href="pages/preguntas-frecuentes.html">Preguntas frecuentes</a> </li>
                 </ul>
             </div>
 
@@ -120,13 +122,34 @@
                 </div>
                 <div id="contenido-carrito" class="modal-body">
                     <p class="center-text">Tu carrito está vacío</p>
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="assets/img/combo-totoro.jpg" class="img-fluid rounded-start" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body item-carrito">
+                                    <div class="descripcion-articulo-carrito">
+                                        <p class="card-title">Combo Totoro</p>
+                                        <p class="card-text">$7600</p>
+                                    </div>
+                                    <div class="cantidad-item-carrito">
+                                        <button class="cart-item_subtract btn">-</button>
+                                        <p>1</p>
+                                        <button class="cart-item_add btn">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <hr>
                 <h6 class="center-text fs-5 fw-bold">Total: $ <span id="precio-final">0</span></h6>
 
                 <div class="modal-footer d-flex justify-content-between">
                     <button type="button" id="vaciar-carrito" class="btn btn-primary hover-rosa">Vaciar carrito</button>
-                    <button type="button" id="finalizar-compra" class="btn btn-primary hover-rosa">Finalizar compra</button>
+                    <button type="button" id="finalizar-compra" class="btn btn-primary hover-rosa">Finalizar
+                        compra</button>
                 </div>
             </div>
         </div>
@@ -167,11 +190,11 @@
 
             <!-- Inicio del catálogo de productos -->
             <section>
-    
+
                 <div class="menu-catalogo">
-        
+
                     <!-- Botón FILTROS -->
-    
+
                     <div class="boton-catalogo">
                         <button class="btn d-lg-none d-flex align-items-center" id="boton-filtros" type="button"
                             data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive"
@@ -180,8 +203,8 @@
                             <p class="p-0 m-0">Filtros</p>
                         </button>
                     </div>
-    
-    
+
+
                     <!-- Botón ORDENAR -->
                     <div class="boton-catalogo" id="boton-ordenar">
                         <select name="Ordenar" class="menu-catalogo-font boton-padding">
@@ -195,16 +218,16 @@
                         </select>
                     </div>
                 </div>
-    
+
                 <!-- Lista de productos del catálogo -->
                 <div id="lista-productos" class="productos-catalogo">
-                    
+
                 </div>
-    
+
             </section>
             <!-- Fin del catálogo de productos -->
-    
-    
+
+
             <!-- FILTROS PARA EL CATALOGO -->
             <div class="offcanvas-lg offcanvas-start w-auto p-3" tabindex="-1" id="offcanvasResponsive"
                 aria-labelledby="offcanvasResponsiveLabel">
@@ -225,7 +248,7 @@
                             <li> <a href=""> Ideas para regalo </a> </li>
                         </ul>
                     </div>
-    
+
                     <div class="filtros-tipos">
                         <h3>Objetos</h3>
                         <ul class="main-links-hover">
@@ -236,7 +259,7 @@
                             <li> <a href=""> Tazas </a> </li>
                         </ul>
                     </div>
-    
+
                     <div class="filtros-tipos">
                         <h3>Temáticas</h3>
                         <ul class="main-links-hover">
@@ -255,7 +278,7 @@
                     </div>
                 </div>
             </div>
-    
+
         </div>
 
     </main>

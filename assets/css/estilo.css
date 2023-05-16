@@ -434,7 +434,7 @@ a {
 
 .boton-carrito {
   background-color: rgb(166, 230, 255);
-  margin-bottom: 15px;
+  margin-bottom: 16px;
   padding: 5px;
   font-family: "Quicksand", sans-serif;
   font-size: 1rem;
@@ -447,6 +447,38 @@ a {
 .hover-rosa:hover {
   background-color: #dc0083;
   opacity: 0.65;
+}
+
+.item-carrito {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.descripcion-articulo-carrito {
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.05rem;
+  font-weight: normal;
+}
+
+.cantidad-item-carrito {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border: 1px solid rgb(166, 230, 255);
+  height: 40px;
+}
+.cantidad-item-carrito button {
+  background-color: rgb(166, 230, 255);
+  border-radius: 0;
+  padding: 0.375rem 0.75rem;
+}
+.cantidad-item-carrito button:hover {
+  background-color: #d66cac;
+}
+.cantidad-item-carrito p {
+  margin-top: 16px;
+  padding: 0.25rem 0.9rem;
 }
 
 .margenes {
