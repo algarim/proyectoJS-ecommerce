@@ -6,6 +6,53 @@ carritoContenido.innerHTML = localStorage.getItem("carritoHTML") || `
     <p class="center-text">Tu carrito está vacío</p>`
 
 
+// Defino una función que genere eventos para sumar de a uno a la cantidad de un producto en el carrito
+
+let botonSumar = document.getElementsByClassName("cart-item_add");
+let cantidadEnCarritoHTML = document.getElementsByClassName("cantidad-item");
+
+function crearBotonSumar() {
+    for (let i = 0; i < botonSumar.length; i++) {
+        botonSumar[i].addEventListener("click", sumarItem);
+        console.log(botonSumar[i]);
+
+        function sumarItem() {
+            carrito[i].cantidadEnCarrito++;
+            cantidadEnCarritoHTML[i].innerHTML = carrito[i].cantidadEnCarrito;
+
+            sumarPrecio(carrito[i].precio);
+
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+            localStorage.setItem("carritoHTML", carritoContenido.innerHTML);
+        }
+    }
+}
+
+
+
+// Defino una función que genere eventos para restar de a uno a la cantidad de un producto en el carrito
+
+let botonRestar = document.getElementsByClassName("cart-item_subtract");
+
+function crearBotonRestar() {
+    for (let i = 0; i < carrito.length; i++) {
+        if (carrito[i].cantidadEnCarrito > 0) {
+            botonRestar[i].addEventListener("click", restarItem);
+
+            function restarItem() {
+                carrito[i].cantidadEnCarrito--;
+                cantidadEnCarritoHTML[i].innerHTML = carrito[i].cantidadEnCarrito;
+
+                sumarPrecio(carrito[i].precio);
+
+                localStorage.setItem("carrito", JSON.stringify(carrito));
+                localStorage.setItem("carritoHTML", carritoContenido.innerHTML);
+            }
+        }
+    }
+}
+
+
 // Creo un array que tenga los productos del carrito
 // Si ya se había ingresado a la página antes, el carrito saca información del storage
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
@@ -38,22 +85,23 @@ class Producto {
 
     // defino un método para agregar el producto al array carrito, guardarlo en el Local Storage y sumar su precio al costo total
     agregarCarrito() {
-        
+
         // para definir la cantidadEnCarrito buscamos primero si el producto está ya en el carrito en el localStorage
 
         // Creo un array con los nombres de los productos en el carrito
-        let nombresCarrito = carrito.map( (producto) => producto.nombre);
+        let nombresCarrito = carrito.map((producto) => producto.nombre);
 
-        // A partir de ese array, chequeo si el producto ya está en el carrito. Si está, actualizo la cantidad
+        // A partir de ese array, chequeo si el producto ya está en el carrito. Si está, lo reemplazo con el objeto actualizado
 
+        let indiceProducto = nombresCarrito.indexOf(this.nombre);
 
-
-        
-
-        this.cantidadEnCarrito = productoEnCarrito.cantidadEnCarrito + 1 || 1;
-
-        if (!carrito.includes(this)) {
+        if (indiceProducto == -1) {
+            this.cantidadEnCarrito = 1;
             carrito.push(this);
+        }
+        else {
+            this.cantidadEnCarrito = carrito[indiceProducto].cantidadEnCarrito + 1;
+            // carrito[indiceProducto] = this;
         }
 
         localStorage.setItem("carrito", JSON.stringify(carrito));
@@ -144,7 +192,7 @@ for (let i = 0; i < listaDeProductos.length; i++) {
             itemCarrito.innerHTML = `
                         <div class="row g-0 d-flex align-items-center">
                             <div class="col-md-4">
-                                <img src=\"${producto.imagen}\" class="img-fluid rounded-start" alt="...">
+                                <img src=\"${producto.imagen}\" class="img-fluid rounded-start" alt="${producto.nombre}">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body item-carrito">
@@ -164,6 +212,11 @@ for (let i = 0; i < listaDeProductos.length; i++) {
             carritoContenido.append(itemCarrito);
 
             localStorage.setItem("carritoHTML", carritoContenido.innerHTML);
+
+            // Genero eventos para sumar y restar items en los botones nuevos
+            botonSumar = [];
+            cantidadEnCarritoHTML = [];
+            crearBotonSumar();
         }
     }
 };
@@ -175,12 +228,15 @@ botonVaciar.addEventListener("click", vaciarCarrito);
 
 function vaciarCarrito() {
     for (const producto of carrito) {
-        sumarPrecio( - (producto.precio * producto.cantidadEnCarrito) );
+        sumarPrecio(- (producto.precio * producto.cantidadEnCarrito));
         producto.cantidadEnCarrito = 0;
     }
 
     carritoContenido.innerHTML = `<p class="center-text">Tu carrito está vacío</p>`;
+    carrito = [];
+
     localStorage.removeItem("carrito");
     localStorage.removeItem("carritoHTML");
     localStorage.removeItem("precioTotal");
 }
+
