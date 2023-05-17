@@ -215,6 +215,14 @@ a {
   font-weight: bold;
 }
 
+.numero-carrito {
+  border: 1px solid rgb(166, 230, 255);
+  padding: 2px 6px;
+  border-radius: 9px;
+  font-size: 0.9rem;
+  background-color: rgb(166, 230, 255);
+}
+
 .carousel-control-prev, .carousel-control-next {
   background-color: #e1e1e1;
   width: 6vh;

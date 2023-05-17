@@ -1,14 +1,20 @@
-// Defino una variable que acceda al contenido del carrito en el HTML
+// Defino una variable que acceda al contenido del carrito y al numero de items en el carrito en el HTML
 // Si ya se había ingresado a la página antes, el carrito saca información del storage
 
 let carritoContenido = document.getElementById("contenido-carrito");
 carritoContenido.innerHTML = localStorage.getItem("carritoHTML") || `
     <p class="center-text">Tu carrito está vacío</p>`
 
+let numeroCarritoHTML = document.getElementById("items-en-carrito");
+numeroCarritoHTML.innerHTML = localStorage.getItem("numeroCarrito") || 0;
+
 
 // Creo un array que tenga los productos del carrito
 // Si ya se había ingresado a la página antes, el carrito saca información del storage
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+// Defino una variable que cuente el total de items en el carrito
+let numeroCarrito = carrito.reduce( (sumaParcial, producto) => sumaParcial + producto.cantidadEnCarrito, 0);
 
 // Accedo al HTML a través de una variable, para modificar el total de la compra
 let totalCompra = document.getElementById("precio-final");
@@ -38,6 +44,10 @@ function crearBotonSumar(boton, i) {
 
         sumarPrecio(carrito[i].precio);
 
+        numeroCarrito++;
+        numeroCarritoHTML.innerHTML = numeroCarrito;
+        localStorage.setItem("numeroCarrito", numeroCarrito);
+
         localStorage.setItem("carrito", JSON.stringify(carrito));
         localStorage.setItem("carritoHTML", carritoContenido.innerHTML);
     }
@@ -53,6 +63,10 @@ function crearBotonRestar(boton, i) {
             cantidadEnCarritoHTML[i].innerHTML = carrito[i].cantidadEnCarrito;
 
             sumarPrecio(- carrito[i].precio);
+
+            numeroCarrito--;
+            numeroCarritoHTML.innerHTML = numeroCarrito;
+            localStorage.setItem("numeroCarrito", numeroCarrito); 
 
             localStorage.setItem("carrito", JSON.stringify(carrito));
             localStorage.setItem("carritoHTML", carritoContenido.innerHTML);
@@ -109,6 +123,10 @@ class Producto {
             cantidadEnCarritoHTML[indiceProducto].innerHTML = carrito[indiceProducto].cantidadEnCarrito;
             localStorage.setItem("carritoHTML", carritoContenido.innerHTML);
         }
+
+        numeroCarrito++;
+        numeroCarritoHTML.innerHTML = numeroCarrito;
+        localStorage.setItem("numeroCarrito", numeroCarrito);
 
         localStorage.setItem("carrito", JSON.stringify(carrito));
 
@@ -254,8 +272,12 @@ function vaciarCarrito() {
     carritoContenido.innerHTML = `<p class="center-text">Tu carrito está vacío</p>`;
     carrito = [];
 
+    numeroCarrito = 0;
+    numeroCarritoHTML.innerHTML = 0;
+
     localStorage.removeItem("carrito");
     localStorage.removeItem("carritoHTML");
     localStorage.removeItem("precioTotal");
+    localStorage.removeItem("numeroCarrito")
 }
 

@@ -157,3 +157,11 @@
         font-weight: bold;
     }
 }
+
+.numero-carrito {
+    border: 1px solid $color_azul-suave;
+    padding: 2px 6px;
+    border-radius: 9px;
+    font-size: 0.9rem;
+    background-color: $color_azul-suave;
+}
