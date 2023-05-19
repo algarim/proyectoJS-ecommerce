@@ -160,8 +160,16 @@
 
 .numero-carrito {
     border: 1px solid $color_azul-suave;
-    padding: 2px 6px;
-    border-radius: 9px;
-    font-size: 0.9rem;
     background-color: $color_azul-suave;
+    opacity: 1;
+
+    padding: 0.5px 4px;
+    border-radius: 10px;
+
+    font-size: 0.9rem;
+    font-weight: bold;
+
+    position: absolute;
+    margin-left: -8px;
+    margin-top: -6px;
 }

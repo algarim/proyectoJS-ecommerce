@@ -217,10 +217,15 @@ a {
 
 .numero-carrito {
   border: 1px solid rgb(166, 230, 255);
-  padding: 2px 6px;
-  border-radius: 9px;
-  font-size: 0.9rem;
   background-color: rgb(166, 230, 255);
+  opacity: 1;
+  padding: 0.5px 4px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  position: absolute;
+  margin-left: -8px;
+  margin-top: -6px;
 }
 
 .carousel-control-prev, .carousel-control-next {
