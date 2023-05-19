@@ -70,11 +70,10 @@
             </div>
 
             <!-- CARRITO -->
-
-            <!-- Button trigger modal -->
-            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#carritoModal">
+            <a class="btn" href="carrito.html">
                 <img src="../assets/img/bag-icon.png" alt="Carrito">
-            </button>
+                <span id="items-en-carrito" class="numero-carrito"></span>
+            </a>
         </div>
 
 
@@ -93,38 +92,21 @@
                     <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <ul class="offcanvas-body menu-nav navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="item-menu-nav nav-item"> <a class="nav-link" href="../index.html">Productos</a> </li>    
+                    <li class="item-menu-nav nav-item"> <a class="nav-link" href="../index.html">Productos</a> </li>
                     <li class="item-menu-nav nav-item"> <a class="nav-link" href="nosotros.html">Nosotras</a> </li>
                     <li class="item-menu-nav nav-item"> <a class="nav-link" href="contacto.html">Contacto</a>
                     </li>
-                    <li class="item-menu-nav nav-item"> <a class="nav-link" href="preguntas-frecuentes.html">Preguntas frecuentes</a> </li>
+                    <li class="item-menu-nav nav-item"> <a class="nav-link" href="preguntas-frecuentes.html">Preguntas
+                            frecuentes</a> </li>
                 </ul>
             </div>
 
         </nav>
         <!-- Fin de barra de navegación -->
 
-
     </header>
 
-    <!-- Modal CARRITO -->
-    <div class="modal fade" id="carritoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title fs-5 fw-bold" id="exampleModalLabel">Carrito</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p class="center-text">Tu carrito está vacío</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Finalizar compra</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    
     <main class="margenes">
         <h1 class="titulo-de-pagina">Preguntas Frecuentes</h1>
 
@@ -132,17 +114,22 @@
 
             <div class="pregunta-respuesta">
                 <h4>¿Cuánto tarda en estar listo mi pedido?</h4>
-                <p>Dependiendo de la cantidad de producto en stock y del tamaño de la compra, el pedido puede demorar hasta 5 días hábiles. Una vez hecha la compra, podés ponerte en contacto con nosotras para tener un estimado más preciso.</p>
+                <p>Dependiendo de la cantidad de producto en stock y del tamaño de la compra, el pedido puede demorar
+                    hasta 5 días hábiles. Una vez hecha la compra, podés ponerte en contacto con nosotras para tener un
+                    estimado más preciso.</p>
             </div>
 
             <div class="pregunta-respuesta">
                 <h4>¿Puedo comprar desde cualquier parte del país?</h4>
-                <p>¡Sí! Hacemos todos nuestros envíos a través de Correo Argentino. Llegamos directo a tu domicilio. Una vez hecha la compra, si tenés alguna condición especial para la entrega, ponete en contacto con nosotros para hacérnoslo saber.</p>
+                <p>¡Sí! Hacemos todos nuestros envíos a través de Correo Argentino. Llegamos directo a tu domicilio. Una
+                    vez hecha la compra, si tenés alguna condición especial para la entrega, ponete en contacto con
+                    nosotros para hacérnoslo saber.</p>
             </div>
 
             <div class="pregunta-respuesta">
                 <h4>¿Hacen ventas mayoristas?</h4>
-                <p>Sí, trabajamos con precios mayoristas. Para recibir el catálogo mayorista, podés contactarnos a través de este <a href="contacto.html">formulario</a>.</p>
+                <p>Sí, trabajamos con precios mayoristas. Para recibir el catálogo mayorista, podés contactarnos a
+                    través de este <a href="contacto.html">formulario</a>.</p>
             </div>
 
             <div class="pregunta-respuesta">
@@ -216,6 +203,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
+
+    <!-- JS PROPIO -->
+    <script src="../main.js"></script>
 
 
 </body>

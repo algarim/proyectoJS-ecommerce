@@ -1,7 +1,7 @@
 // Defino una variable que acceda al contenido del carrito y al numero de items en el carrito en el HTML
 // Si ya se había ingresado a la página antes, el carrito saca información del storage
 
-let carritoContenido = document.getElementById("contenido-carrito");
+let carritoContenido = document.getElementById("contenido-carrito") || document.createElement("div");
 carritoContenido.innerHTML = localStorage.getItem("carritoHTML") || `
     <p class="center-text">Tu carrito está vacío</p>`
 
@@ -14,10 +14,10 @@ numeroCarritoHTML.innerHTML = localStorage.getItem("numeroCarrito") || 0;
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 // Defino una variable que cuente el total de items en el carrito
-let numeroCarrito = carrito.reduce( (sumaParcial, producto) => sumaParcial + producto.cantidadEnCarrito, 0);
+let numeroCarrito = carrito.reduce((sumaParcial, producto) => sumaParcial + producto.cantidadEnCarrito, 0);
 
 // Accedo al HTML a través de una variable, para modificar el total de la compra
-let totalCompra = document.getElementById("precio-final");
+let totalCompra = document.getElementById("precio-final") || document.createElement("span");
 
 // Defino una variable que lleve el precio total acumulado y agrego el valor al HTML
 let precioTotal = Number(localStorage.getItem("precioTotal")) || 0;
@@ -33,13 +33,13 @@ function sumarPrecio(precioProducto) {
 
 // Defino funciones que generen eventos para Sumar y Restar la cantidad de items en el carrito de un determinado producto. Los argumentos son un botón y un índice.
 
-let cantidadEnCarritoHTML = document.getElementsByClassName("cantidad-item");
-
 function crearBotonSumar(boton, i) {
     boton.addEventListener("click", sumarItem);
 
     function sumarItem() {
         carrito[i].cantidadEnCarrito++;
+
+        let cantidadEnCarritoHTML = carritoContenido.getElementsByClassName("cantidad-item");
         cantidadEnCarritoHTML[i].innerHTML = carrito[i].cantidadEnCarrito;
 
         sumarPrecio(carrito[i].precio);
@@ -60,13 +60,15 @@ function crearBotonRestar(boton, i) {
     function restarItem() {
         if (carrito[i].cantidadEnCarrito > 1) {
             carrito[i].cantidadEnCarrito--;
+
+            let cantidadEnCarritoHTML = carritoContenido.getElementsByClassName("cantidad-item");
             cantidadEnCarritoHTML[i].innerHTML = carrito[i].cantidadEnCarrito;
 
             sumarPrecio(- carrito[i].precio);
 
             numeroCarrito--;
             numeroCarritoHTML.innerHTML = numeroCarrito;
-            localStorage.setItem("numeroCarrito", numeroCarrito); 
+            localStorage.setItem("numeroCarrito", numeroCarrito);
 
             localStorage.setItem("carrito", JSON.stringify(carrito));
             localStorage.setItem("carritoHTML", carritoContenido.innerHTML);
@@ -78,17 +80,20 @@ function crearBotonRestar(boton, i) {
 
 let botonSumar = document.getElementsByClassName("cart-item_add");
 
-for (let i = 0; i < botonSumar.length; i++) {
-    crearBotonSumar(botonSumar[i], i);
+if (botonSumar[0]) {
+    for (let i = 0; i < botonSumar.length; i++) {
+        crearBotonSumar(botonSumar[i], i);
+    }
 }
 
 
 let botonRestar = document.getElementsByClassName("cart-item_subtract");
 
-for (let i = 0; i < carrito.length; i++) {
-    crearBotonRestar(botonRestar[i], i);
+if (botonRestar[0]) {
+    for (let i = 0; i < carrito.length; i++) {
+        crearBotonRestar(botonRestar[i], i);
+    }
 }
-
 
 // Defino una clase que me permita crear un objeto para cada producto, con nombre, ruta de la imagen, precio y cantidad de unidades del producto en el carrito
 
@@ -120,7 +125,11 @@ class Producto {
             this.cantidadEnCarrito = carrito[indiceProducto].cantidadEnCarrito + 1;
             carrito[indiceProducto] = this;
 
+            let cantidadEnCarritoHTML = carritoContenido.getElementsByClassName("cantidad-item");
+
             cantidadEnCarritoHTML[indiceProducto].innerHTML = carrito[indiceProducto].cantidadEnCarrito;
+
+
             localStorage.setItem("carritoHTML", carritoContenido.innerHTML);
         }
 
@@ -194,36 +203,39 @@ function listarProductos(lista) {
     }
 }
 
-// Agrego los productos al catálogo usando la función anterior
-listarProductos(listaDeProductos);
+// Agrego los productos al catálogo usando la función anterior (si estamos en la página de producto; es decir, si catalogo no es undefined)
 
-// Defino un evento que agregue un producto al carrito al apretar el botón
-let botonCarrito = document.getElementsByClassName("boton-agregar-carrito");
+if (catalogo) {
+    listarProductos(listaDeProductos);
 
-for (let i = 0; i < listaDeProductos.length; i++) {
-    botonCarrito[i].addEventListener("click", agregarCarrito)
 
-    function agregarCarrito() {
-        if (carrito.length == 0) {
-            carritoContenido.innerHTML = ""; // borro contenido del carrito
-        };
+    // Defino un evento que agregue un producto al carrito al apretar el botón
+    let botonCarrito = document.getElementsByClassName("boton-agregar-carrito");
 
-        if (carrito.some((producto) => producto.nombre === listaDeProductos[i].nombre)) {
-            listaDeProductos[i].agregarCarrito();
-        }
+    for (let i = 0; i < listaDeProductos.length; i++) {
+        botonCarrito[i].addEventListener("click", agregarCarrito)
 
-        else {
-            listaDeProductos[i].agregarCarrito();
+        function agregarCarrito() {
+            if (carrito.length == 0) {
+                carritoContenido.innerHTML = ""; // borro contenido del carrito
+            };
 
-            // agrego el elemento al carrito en HTML
+            if (carrito.some((producto) => producto.nombre === listaDeProductos[i].nombre)) {
+                listaDeProductos[i].agregarCarrito();
+            }
 
-            let itemCarrito = document.createElement("div");
-            itemCarrito.className = "card mb-3";
-            itemCarrito.style.maxWidth = "540px"
-            itemCarrito.innerHTML = `
+            else {
+                listaDeProductos[i].agregarCarrito();
+
+                // agrego el elemento al carrito en HTML
+
+                let itemCarrito = document.createElement("div");
+                itemCarrito.className = "card mb-3";
+                //itemCarrito.style.maxWidth = "540px"
+                itemCarrito.innerHTML = `
                         <div class="row g-0 d-flex align-items-center">
                             <div class="col-md-4">
-                                <img src=\"${listaDeProductos[i].imagen}\" class="img-fluid rounded-start" alt="${listaDeProductos[i].nombre}">
+                                <img src=\" ../` + listaDeProductos[i].imagen + `\" class="img-fluid rounded-start" alt="${listaDeProductos[i].nombre}">
                             </div>
                             <div class="col-md-8">
                                 <div class="card-body item-carrito">
@@ -240,20 +252,21 @@ for (let i = 0; i < listaDeProductos.length; i++) {
                             </div>
                         </div>
             `
-            carritoContenido.append(itemCarrito);
+                carritoContenido.append(itemCarrito);
 
-            localStorage.setItem("carritoHTML", carritoContenido.innerHTML);
+                localStorage.setItem("carritoHTML", carritoContenido.innerHTML);
 
-            // a partir del nuevo código HTML agregado, actualizo las variables y genero nuevamente los eventos Sumar y Restar para el último elemento del array
+                // a partir del nuevo código HTML agregado, actualizo las variables y genero nuevamente los eventos Sumar y Restar para el último elemento del array
 
-            cantidadEnCarritoHTML = document.getElementsByClassName("cantidad-item");
-            botonSumar = document.getElementsByClassName("cart-item_add");
-            botonRestar = document.getElementsByClassName("cart-item_subtract");
+                //cantidadEnCarritoHTML = document.getElementsByClassName("cantidad-item");
+                //botonSumar = document.getElementsByClassName("cart-item_add");
+                //botonRestar = document.getElementsByClassName("cart-item_subtract");
 
-            let ultimoIndice = carrito.length - 1;
+                //let ultimoIndice = carrito.length - 1;
 
-            crearBotonSumar(botonSumar[ultimoIndice], ultimoIndice);
-            crearBotonRestar(botonRestar[ultimoIndice], ultimoIndice);
+                //crearBotonSumar(botonSumar[ultimoIndice], ultimoIndice);
+                //crearBotonRestar(botonRestar[ultimoIndice], ultimoIndice);
+            }
         }
     }
 }
@@ -261,23 +274,26 @@ for (let i = 0; i < listaDeProductos.length; i++) {
 // Evento para vaciar el carrito
 let botonVaciar = document.getElementById("vaciar-carrito");
 
-botonVaciar.addEventListener("click", vaciarCarrito);
 
-function vaciarCarrito() {
-    for (const producto of carrito) {
-        sumarPrecio(- (producto.precio * producto.cantidadEnCarrito));
-        producto.cantidadEnCarrito = 0;
+if (botonVaciar) {
+    botonVaciar.addEventListener("click", vaciarCarrito);
+
+    function vaciarCarrito() {
+        for (const producto of carrito) {
+            sumarPrecio(- (producto.precio * producto.cantidadEnCarrito));
+            producto.cantidadEnCarrito = 0;
+        }
+
+        carritoContenido.innerHTML = `<p class="center-text">Tu carrito está vacío</p>`;
+        carrito = [];
+
+        numeroCarrito = 0;
+        numeroCarritoHTML.innerHTML = 0;
+
+        localStorage.removeItem("carrito");
+        localStorage.removeItem("carritoHTML");
+        localStorage.removeItem("precioTotal");
+        localStorage.removeItem("numeroCarrito")
     }
-
-    carritoContenido.innerHTML = `<p class="center-text">Tu carrito está vacío</p>`;
-    carrito = [];
-
-    numeroCarrito = 0;
-    numeroCarritoHTML.innerHTML = 0;
-
-    localStorage.removeItem("carrito");
-    localStorage.removeItem("carritoHTML");
-    localStorage.removeItem("precioTotal");
-    localStorage.removeItem("numeroCarrito")
 }
 

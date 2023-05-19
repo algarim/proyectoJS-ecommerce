@@ -73,12 +73,10 @@
             </div>
 
             <!-- CARRITO -->
-
-            <!-- Button trigger modal -->
-            <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#carritoModal" class="boton-carrito" >
+            <a class="btn" href="pages/carrito.html">
                 <img src="assets/img/bag-icon.png" alt="Carrito">
                 <span id="items-en-carrito" class="numero-carrito"></span>
-            </button>
+            </a>
         </div>
 
 
@@ -104,6 +102,7 @@
                     </li>
                     <li class="item-menu-nav nav-item"> <a class="nav-link"
                             href="pages/preguntas-frecuentes.html">Preguntas frecuentes</a> </li>
+                    <li> <a href="pages/carrito.html">Carrito</a></li>
                 </ul>
             </div>
 
@@ -113,28 +112,6 @@
 
     </header>
 
-    <!-- Modal CARRITO -->
-    <div class="modal fade" id="carritoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title fs-5 fw-bold" id="exampleModalLabel">Carrito</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div id="contenido-carrito" class="modal-body">
-                   
-                </div>
-                <hr>
-                <h6 class="center-text fs-5 fw-bold">Total: $ <span id="precio-final">0</span></h6>
-
-                <div class="modal-footer d-flex justify-content-between">
-                    <button type="button" id="vaciar-carrito" class="btn btn-primary hover-rosa">Vaciar carrito</button>
-                    <button type="button" id="finalizar-compra" class="btn btn-primary hover-rosa">Finalizar
-                        compra</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <main>
         <!-- Banner -->

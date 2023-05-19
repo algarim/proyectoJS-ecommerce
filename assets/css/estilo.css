@@ -469,9 +469,6 @@ a {
 }
 
 .descripcion-articulo-carrito {
-  font-family: "Quicksand", sans-serif;
-  font-size: 1rem;
-  font-weight: normal;
   margin-right: 20px;
   flex: 1;
 }
@@ -488,9 +485,6 @@ a {
   background-color: rgb(166, 230, 255);
   border-radius: 0;
   padding: 0.3rem 0.7rem;
-  font-family: "Quicksand", sans-serif;
-  font-size: 1rem;
-  font-weight: normal;
 }
 .cantidad-item-carrito button:hover {
   background-color: #d66cac;
