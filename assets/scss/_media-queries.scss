@@ -119,6 +119,18 @@
     }
 }
 
+@media (max-width: 767px) {
+    .carrito-ancho {
+        max-width: 360px;
+    }
+
+    .descripcion-articulo-carrito {
+        p {
+            @include texto(1rem);
+        }
+    }
+}
+
 @media (max-width: 600px) {
     .desaparecer-600px {
         display: none;
@@ -177,6 +189,18 @@
             width: 100%;
             margin: 0;
         }
+    }
+
+    .numero-carrito {
+   
+        padding: 0px 3px;
+    
+        font-size: 0.8rem;
+
+    
+        position: absolute;
+        margin-left: -8px;
+        margin-top: -6px;
     }
 }
 

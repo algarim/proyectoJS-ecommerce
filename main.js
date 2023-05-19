@@ -17,6 +17,7 @@ let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 let numeroCarrito = carrito.reduce((sumaParcial, producto) => sumaParcial + producto.cantidadEnCarrito, 0);
 
 // Accedo al HTML a través de una variable, para modificar el total de la compra
+// Para evitar errores en otras páginas que no sean el carrito, agrego un operador OR
 let totalCompra = document.getElementById("precio-final") || document.createElement("span");
 
 // Defino una variable que lleve el precio total acumulado y agrego el valor al HTML
@@ -95,6 +96,42 @@ if (botonRestar[0]) {
     }
 }
 
+
+// Hago lo mismo para eliminar elementos del carrito
+
+function crearBotonEliminar(boton, i) {
+    boton.addEventListener("click", eliminarItem);
+
+    function eliminarItem() {
+
+        sumarPrecio(- carrito[i].precio * carrito[i].cantidadEnCarrito);
+
+        numeroCarrito = numeroCarrito - carrito[i].cantidadEnCarrito;
+        numeroCarritoHTML.innerHTML = numeroCarrito;
+
+        localStorage.setItem("numeroCarrito", numeroCarrito);
+
+        carrito.splice(i, 1);
+
+        // accedo al HTML usando clase para tener una colección de segmentos HTML de cada producto en el carrito
+        let itemsCarritoHTML = carritoContenido.getElementsByClassName("item-carrito");
+
+        // borro el producto seleccionado del carrito
+        itemsCarritoHTML[i].remove();
+
+        localStorage.setItem("carrito", JSON.stringify(carrito));
+        localStorage.setItem("carritoHTML", carritoContenido.innerHTML);
+    }
+}
+
+let botonEliminar = document.getElementsByClassName("cart-item_delete");
+
+if (botonEliminar[0]) {
+    for (let i = 0; i < carrito.length; i++) {
+        crearBotonEliminar(botonEliminar[i], i);
+    }
+}
+
 // Defino una clase que me permita crear un objeto para cada producto, con nombre, ruta de la imagen, precio y cantidad de unidades del producto en el carrito
 
 class Producto {
@@ -113,7 +150,7 @@ class Producto {
         // Creo un array con los nombres de los productos en el carrito
         let nombresCarrito = carrito.map((producto) => producto.nombre);
 
-        // A partir de ese array, chequeo si el producto ya está en el carrito. Si está, lo reemplazo con el objeto actualizado
+        // A partir de ese array, chequeo si el producto ya está en el carrito. Si está, lo reemplazo con el objeto actualizado. Si no, simplemente lo agrego
 
         let indiceProducto = nombresCarrito.indexOf(this.nombre);
 
@@ -203,7 +240,7 @@ function listarProductos(lista) {
     }
 }
 
-// Agrego los productos al catálogo usando la función anterior (si estamos en la página de producto; es decir, si catalogo no es undefined)
+// Agrego los productos al catálogo usando la función anterior (solamente si estamos en la página de producto; es decir, si catalogo no es undefined)
 
 if (catalogo) {
     listarProductos(listaDeProductos);
@@ -230,42 +267,42 @@ if (catalogo) {
                 // agrego el elemento al carrito en HTML
 
                 let itemCarrito = document.createElement("div");
-                itemCarrito.className = "card mb-3";
-                //itemCarrito.style.maxWidth = "540px"
+                itemCarrito.className = "item-carrito card mb-3";
                 itemCarrito.innerHTML = `
-                        <div class="row g-0 d-flex align-items-center">
-                            <div class="col-md-4">
-                                <img src=\" ../` + listaDeProductos[i].imagen + `\" class="img-fluid rounded-start" alt="${listaDeProductos[i].nombre}">
-                            </div>
-                            <div class="col-md-8">
-                                <div class="card-body item-carrito">
-                                    <div class="descripcion-articulo-carrito text-md-center">
-                                        <p class="card-title">${listaDeProductos[i].nombre}</p>
-                                        <p class="card-text">$ ${listaDeProductos[i].precio}</p>
-                                    </div>
-                                    <div class="cantidad-item-carrito">
-                                        <button class="cart-item_subtract btn">-</button>
-                                        <p class="cantidad-item">${listaDeProductos[i].cantidadEnCarrito}</p>
-                                        <button class=\"cart-item_add btn\">+</button>
-                                    </div>
+                    <div class="row g-0 d-flex align-items-center">
+                        
+                        <div class="col-md-4">
+                            <img src=\" ../` + listaDeProductos[i].imagen + `\" class="img-fluid rounded-start" alt="${listaDeProductos[i].nombre}">
+                        </div>
+                        
+                        <div class="col-md-8">
+                            <div class="card-body carrito-descripcion-y-botones">
+                                <div class="descripcion-articulo-carrito text-md-center">
+                                    <p class="card-title">${listaDeProductos[i].nombre}</p>
+                                    <p class="card-text">$ ${listaDeProductos[i].precio}</p>
+                                </div>
+                                
+                                <div class="cantidad-item-carrito">
+                                    <button class="cart-item_subtract btn">-</button>
+                                    <p class="cantidad-item">${listaDeProductos[i].cantidadEnCarrito}</p>
+                                    <button class="cart-item_add btn">+</button>
+                                </div>
+                                
+                                <div class="eliminar-item">
+                                    <a href="carrito.html">
+                                        <button class="cart-item_delete btn p-0">
+                                            <img src="../assets/img/bin.png" alt="Eliminar producto">
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
-            `
+                    </div>
+                    `;
+
                 carritoContenido.append(itemCarrito);
 
                 localStorage.setItem("carritoHTML", carritoContenido.innerHTML);
-
-                // a partir del nuevo código HTML agregado, actualizo las variables y genero nuevamente los eventos Sumar y Restar para el último elemento del array
-
-                //cantidadEnCarritoHTML = document.getElementsByClassName("cantidad-item");
-                //botonSumar = document.getElementsByClassName("cart-item_add");
-                //botonRestar = document.getElementsByClassName("cart-item_subtract");
-
-                //let ultimoIndice = carrito.length - 1;
-
-                //crearBotonSumar(botonSumar[ultimoIndice], ultimoIndice);
-                //crearBotonRestar(botonRestar[ultimoIndice], ultimoIndice);
             }
         }
     }

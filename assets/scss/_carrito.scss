@@ -1,4 +1,4 @@
-.item-carrito {
+.carrito-descripcion-y-botones {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -15,7 +15,6 @@
     align-items: center;
     border: 1px solid $color_azul-suave;
     height: 37px;
-    width: 94.52;
 
     button {
         background-color: $color_azul-suave;
@@ -32,4 +31,16 @@
         padding: 0.2rem 0.7rem;
         @include texto(1rem);
     }
+}
+
+.eliminar-item{
+    margin-left: 15px ;
+    img {
+        height: 35px;
+    }
+}
+
+.carrito-ancho {
+    max-width: 900px;
+    margin: auto;
 }
