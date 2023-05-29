@@ -132,105 +132,76 @@ if (botonEliminar[0]) {
     }
 }
 
-// Defino una clase que me permita crear un objeto para cada producto, con nombre, ruta de la imagen, precio y cantidad de unidades del producto en el carrito
+// Defino una función para agregar un producto al array carrito, guardarlo en el Local Storage y sumar su precio al costo total
+function agregarCarrito(producto) {
 
-class Producto {
-    constructor(nombre, imagen, precio) {
-        this.nombre = nombre;
-        this.imagen = imagen;
-        this.precio = Number(precio);
-        this.cantidadEnCarrito;
+    // para definir la cantidadEnCarrito buscamos primero si el producto está ya en el carrito en el localStorage
+
+    // Creo un array con los nombres de los productos en el carrito
+    let nombresCarrito = carrito.map((item) => item.nombre);
+
+    // A partir de ese array, chequeo si el producto ya está en el carrito. Si está, lo reemplazo con el objeto actualizado. Si no, simplemente lo agrego
+
+    let indiceProducto = nombresCarrito.indexOf(producto.nombre);
+
+    if (indiceProducto == -1) {
+        producto.cantidadEnCarrito = 1;
+        carrito.push(producto);
+    }
+    else {
+        producto.cantidadEnCarrito = carrito[indiceProducto].cantidadEnCarrito + 1;
+        carrito[indiceProducto] = producto;
+
+        let cantidadEnCarritoHTML = carritoContenido.getElementsByClassName("cantidad-item");
+
+        cantidadEnCarritoHTML[indiceProducto].innerHTML = carrito[indiceProducto].cantidadEnCarrito;
+
+
+        localStorage.setItem("carritoHTML", carritoContenido.innerHTML);
     }
 
-    // defino un método para agregar el producto al array carrito, guardarlo en el Local Storage y sumar su precio al costo total
-    agregarCarrito() {
+    numeroCarrito++;
+    numeroCarritoHTML.innerHTML = numeroCarrito;
+    localStorage.setItem("numeroCarrito", numeroCarrito);
 
-        // para definir la cantidadEnCarrito buscamos primero si el producto está ya en el carrito en el localStorage
+    localStorage.setItem("carrito", JSON.stringify(carrito));
 
-        // Creo un array con los nombres de los productos en el carrito
-        let nombresCarrito = carrito.map((producto) => producto.nombre);
-
-        // A partir de ese array, chequeo si el producto ya está en el carrito. Si está, lo reemplazo con el objeto actualizado. Si no, simplemente lo agrego
-
-        let indiceProducto = nombresCarrito.indexOf(this.nombre);
-
-        if (indiceProducto == -1) {
-            this.cantidadEnCarrito = 1;
-            carrito.push(this);
-        }
-        else {
-            this.cantidadEnCarrito = carrito[indiceProducto].cantidadEnCarrito + 1;
-            carrito[indiceProducto] = this;
-
-            let cantidadEnCarritoHTML = carritoContenido.getElementsByClassName("cantidad-item");
-
-            cantidadEnCarritoHTML[indiceProducto].innerHTML = carrito[indiceProducto].cantidadEnCarrito;
-
-
-            localStorage.setItem("carritoHTML", carritoContenido.innerHTML);
-        }
-
-        numeroCarrito++;
-        numeroCarritoHTML.innerHTML = numeroCarrito;
-        localStorage.setItem("numeroCarrito", numeroCarrito);
-
-        localStorage.setItem("carrito", JSON.stringify(carrito));
-
-        sumarPrecio(this.precio);
-    }
+    sumarPrecio(producto.precio);
 }
 
+// Creo dos arrays: uno con los tipos de productos y otro con las temáticas (ordenados alfabéticamente)
 
-// Defino un objeto para cada producto
+const tipos = ["almohadon","cuaderno"];
+const tematicas = ["Alicia en el País de las Maravillas", "Harry Potter", "Lilo y Stitch", "Mario Bros", "Marvel", "Sailor Moon", "Studio Ghibli"];
 
-const almohadonCheshire = new Producto("Gato de Cheshire", "assets/img/gato-cheshire-azul.jpg", 2600);
+// Accedo a los botones de la sección de filtros
+let botonesFiltros = document.getElementsByClassName("boton-filtro");
 
-const almohadonStitch = new Producto("Stitch", "assets/img/stitch.jpg", 2600);
-
-const almohadonHongos = new Producto("Hongos Mario Bros", "assets/img/mario-hongos.jpg", 2600);
-
-const almohadonSailorMoon = new Producto("Sailor Moon", "assets/img/sailor-moon.jpg", 2600);
-
-const comboHP = new Producto("Combo Harry, Ron y Hermione", "assets/img/harry-potter-personajes.jpg", 7600);
-
-const cuadernoTotoro = new Producto("Cuaderno Totoro", "assets/img/cuaderno-totoro.jpg", 2500);
-
-const comboMario = new Producto("Combo Mario Bros", "assets/img/mario-bros.jpg", 7600);
-
-const almohadonHedwig = new Producto("Hedwig", "assets/img/hedwig.jpg", 2600);
-
-const almohadonHPTorta = new Producto("Torta de cumpleaños de Harry", "assets/img/harry-torta.jpg", 2600);
-
-const cuadernoHP = new Producto("Cuaderno Harry Potter", "assets/img/cuaderno-harry-potter.jpg", 2500);
-
-const almohadonLoki = new Producto("Loki", "assets/img/loki.jpg", 2600);
-
-const almohadonAlicia = new Producto("Alicia", "assets/img/alicia.jpg", 2600);
-
-
-// Creo un array con todos los productos
-
-const listaDeProductos = [comboMario, almohadonHongos, comboHP, almohadonHPTorta, almohadonHedwig, cuadernoHP, cuadernoTotoro, almohadonCheshire, almohadonAlicia, almohadonStitch, almohadonLoki, almohadonSailorMoon];
-
-// Usando el método map, creo un array que contenga todos los enteros desde 1 hasta la longitud del array
-
-indicesDeProductos = listaDeProductos.map((producto) => listaDeProductos.indexOf(producto) + 1);
+// Creo evento para cada opción de filtro
+for (let i = 0; i< botonesFiltros.length; i++){
+    botonesFiltros[i].addEventListener('click', () => {
+        
+    })
+}
 
 // Accedo al catalogo del HTML
 
 let catalogo = document.getElementById("lista-productos");
 
-// Defino una función que liste los productos en el catálogo
+// Defino una función asincrónica que recoja los productos de la API (en este caso, del JSON local) y los liste en el catálogo
 
-function listarProductos(lista) {
-    for (let i = 0; i < lista.length; i++) {
+const pedirProductos = async () => {
+    const resp = await fetch('lista-de-productos.JSON');
+    const listaDeProductos = await resp.json();
+
+    for (let i = 0; i < listaDeProductos.length; i++) {
         let articulo = document.createElement("article");
         articulo.className = "articulo-catalogo";
         articulo.innerHTML = `
-        <img src= \"${lista[i].imagen}\" alt="${lista[i].nombre}">
+        <img src= \"${listaDeProductos[i].imagen}\" alt="${listaDeProductos[i].nombre}">
         <div class="articulo-descripcion">
-            <h6 class="articulo-nombre"> ${lista[i].nombre} </h6>
-            <p>$ ${lista[i].precio}</p>
+            <h6 class="articulo-nombre"> ${listaDeProductos[i].nombre} </h6>
+            <p>$ ${listaDeProductos[i].precio}</p>
             <button class="btn boton-carrito boton-agregar-carrito">
                 Agregar al carrito
             </button>
@@ -238,67 +209,60 @@ function listarProductos(lista) {
         `
         catalogo.append(articulo);
     }
-}
-
-// Agrego los productos al catálogo usando la función anterior (solamente si estamos en la página de producto; es decir, si catalogo no es undefined)
-
-if (catalogo) {
-    listarProductos(listaDeProductos);
-
 
     // Defino un evento que agregue un producto al carrito al apretar el botón
     let botonCarrito = document.getElementsByClassName("boton-agregar-carrito");
 
     for (let i = 0; i < listaDeProductos.length; i++) {
-        botonCarrito[i].addEventListener("click", agregarCarrito)
+        botonCarrito[i].addEventListener("click", botonAgregarCarrito)
 
-        function agregarCarrito() {
+        function botonAgregarCarrito() {
             if (carrito.length == 0) {
                 carritoContenido.innerHTML = ""; // borro contenido del carrito
             };
 
             if (carrito.some((producto) => producto.nombre === listaDeProductos[i].nombre)) {
-                listaDeProductos[i].agregarCarrito();
+                agregarCarrito(listaDeProductos[i]);
             }
 
             else {
-                listaDeProductos[i].agregarCarrito();
+                agregarCarrito(listaDeProductos[i]);
 
                 // agrego el elemento al carrito en HTML
 
                 let itemCarrito = document.createElement("div");
                 itemCarrito.className = "item-carrito card mb-3";
                 itemCarrito.innerHTML = `
-                    <div class="row g-0 d-flex align-items-center">
-                        
-                        <div class="col-md-4">
-                            <img src=\" ../` + listaDeProductos[i].imagen + `\" class="img-fluid rounded-start" alt="${listaDeProductos[i].nombre}">
-                        </div>
-                        
-                        <div class="col-md-8">
-                            <div class="card-body carrito-descripcion-y-botones">
-                                <div class="descripcion-articulo-carrito text-md-center">
-                                    <p class="card-title">${listaDeProductos[i].nombre}</p>
-                                    <p class="card-text">$ ${listaDeProductos[i].precio}</p>
-                                </div>
-                                
-                                <div class="cantidad-item-carrito">
-                                    <button class="cart-item_subtract btn">-</button>
-                                    <p class="cantidad-item">${listaDeProductos[i].cantidadEnCarrito}</p>
-                                    <button class="cart-item_add btn">+</button>
-                                </div>
-                                
-                                <div class="eliminar-item">
-                                    <a href="carrito.html">
-                                        <button class="cart-item_delete btn p-0">
-                                            <img src="../assets/img/bin.png" alt="Eliminar producto">
-                                        </button>
-                                    </a>
-                                </div>
+                <div class="row g-0 d-flex align-items-center">
+                    
+                    <div class="col-md-4">
+                        <img src=\" ../` + listaDeProductos[i].imagen + `\" class="img-fluid rounded-start" alt="${listaDeProductos[i].nombre}">
+                    </div>
+                    
+                    <div class="col-md-8">
+                        <div class="card-body carrito-descripcion-y-botones">
+                            <div class="descripcion-articulo-carrito text-md-center">
+                                <p class="card-title">${listaDeProductos[i].nombre}</p>
+                                <p class="card-text">$ ${listaDeProductos[i].precio}</p>
+                            </div>
+                            
+                            <div class="cantidad-item-carrito">
+                                <button class="cart-item_subtract btn">-</button>
+                                <p class="cantidad-item">${listaDeProductos[i].cantidadEnCarrito}</p>
+                                <button class="cart-item_add btn">+</button>
+                            </div>
+                            
+                            <div class="eliminar-item">
+                                <a href="carrito.html">
+                                    <button class="cart-item_delete btn p-0">
+                                        <img src="../assets/img/bin.png" alt="Eliminar producto">
+                                    </button>
+                                </a>
                             </div>
                         </div>
                     </div>
-                    `;
+                </div>
+                `;
 
                 carritoContenido.append(itemCarrito);
 
@@ -306,6 +270,12 @@ if (catalogo) {
             }
         }
     }
+}
+
+// Agrego los productos al catálogo usando la función anterior (solamente si estamos en la página de producto; es decir, si catalogo no es undefined)
+
+if (catalogo) {
+    pedirProductos();
 }
 
 // Evento para vaciar el carrito
