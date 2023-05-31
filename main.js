@@ -35,105 +35,102 @@ function sumarPrecio(precioProducto) {
 
 /* BOTONES CARRITO */
 
-// Defino funciones que generen eventos para Sumar y Restar la cantidad de items en el carrito de un determinado producto. Los argumentos son un botón y un índice.
+// Defino una función que agregue eventos en los botones de un producto del carrito (sumar un item, restar un item, eliminar un producto del carrito)
 
-function crearBotonSumar(boton, i) {
-    boton.addEventListener("click", sumarItem);
+function crearBotonesCarrito(producto) {
+    let productoEnCarrito = document.getElementById(`producto-${producto.id}`);
 
-    function sumarItem() {
-        carrito[i].cantidadEnCarrito++;
+    if (productoEnCarrito) {
 
-        let cantidadEnCarritoHTML = carritoContenido.getElementsByClassName("cantidad-item");
-        cantidadEnCarritoHTML[i].innerHTML = carrito[i].cantidadEnCarrito;
+        // BOTON PARA SUMAR ITEMS
+        let botonSumar = productoEnCarrito.getElementsByClassName("cart-item_add");
+        botonSumar[0].addEventListener("click", sumarItem);
 
-        sumarPrecio(carrito[i].precio);
+        function sumarItem() {
+            producto.cantidadEnCarrito++;
 
-        numeroCarrito++;
-        numeroCarritoHTML.innerHTML = numeroCarrito;
-        localStorage.setItem("numeroCarrito", numeroCarrito);
+            let cantidadEnCarritoHTML = carritoContenido.querySelector(`#producto-${producto.id} .cantidad-item`);
+            cantidadEnCarritoHTML.innerHTML = producto.cantidadEnCarrito;
 
-        localStorage.setItem("carrito", JSON.stringify(carrito));
-        localStorage.setItem("carritoHTML", carritoContenido.innerHTML);
-    }
-}
+            sumarPrecio(producto.precio);
 
-
-function crearBotonRestar(boton, i) {
-    boton.addEventListener("click", restarItem);
-
-    function restarItem() {
-        if (carrito[i].cantidadEnCarrito > 1) {
-            carrito[i].cantidadEnCarrito--;
-
-            let cantidadEnCarritoHTML = carritoContenido.getElementsByClassName("cantidad-item");
-            cantidadEnCarritoHTML[i].innerHTML = carrito[i].cantidadEnCarrito;
-
-            sumarPrecio(- carrito[i].precio);
-
-            numeroCarrito--;
+            numeroCarrito++;
             numeroCarritoHTML.innerHTML = numeroCarrito;
             localStorage.setItem("numeroCarrito", numeroCarrito);
 
             localStorage.setItem("carrito", JSON.stringify(carrito));
             localStorage.setItem("carritoHTML", carritoContenido.innerHTML);
         }
+
+
+        // BOTON PARA RESTAR ITEMS
+        let botonRestar = productoEnCarrito.getElementsByClassName("cart-item_subtract");
+        botonRestar[0].addEventListener("click", restarItem);
+
+        function restarItem() {
+            if (producto.cantidadEnCarrito > 1) {
+                producto.cantidadEnCarrito--;
+
+                let cantidadEnCarritoHTML = carritoContenido.querySelector(`#producto-${producto.id} .cantidad-item`);
+                cantidadEnCarritoHTML.innerHTML = producto.cantidadEnCarrito;
+
+                sumarPrecio(- producto.precio);
+
+                numeroCarrito--;
+                numeroCarritoHTML.innerHTML = numeroCarrito;
+                localStorage.setItem("numeroCarrito", numeroCarrito);
+
+                localStorage.setItem("carrito", JSON.stringify(carrito));
+                localStorage.setItem("carritoHTML", carritoContenido.innerHTML);
+            }
+        }
+
+        // BOTON PARA ELIMINAR PRODUCTO DEL CARRITO
+        let botonEliminar = productoEnCarrito.getElementsByClassName("cart-item_delete");
+        botonEliminar[0].addEventListener("click", eliminarItem);
+
+        function eliminarItem() {
+
+            sumarPrecio(- producto.precio * producto.cantidadEnCarrito);
+    
+            numeroCarrito = numeroCarrito - producto.cantidadEnCarrito;
+            numeroCarritoHTML.innerHTML = numeroCarrito;
+    
+            localStorage.setItem("numeroCarrito", numeroCarrito);
+    
+            // elimino producto del carrito
+            indiceDelProducto = carrito.indexOf(producto);
+            carrito.splice(indiceDelProducto,1);
+            
+            // elimino item del html
+            productoEnCarrito.remove();
+    
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+
+            if (numeroCarrito == 0){
+                carritoContenido.innerHTML = `<p class="center-text">Tu carrito está vacío</p>`
+            }
+            localStorage.setItem("carritoHTML", carritoContenido.innerHTML);
+
+            Toastify({
+                text: `${producto.nombre} fue eliminado del carrito`,
+                duration: 3000,
+                gravity: "bottom",
+                position: "right",
+                style: {
+                    background: "#FF5858",
+                  }
+            }).showToast();
+        }
     }
 }
 
-// Genero los eventos sumar y restar la cantidad de items del carrito, para los elementos del carrito guardados en el local storage
 
-let botonSumar = document.getElementsByClassName("cart-item_add");
+// Usando la función anterior, agrego eventos en los botones de cada producto del carrito
 
-if (botonSumar[0]) {
-    for (let i = 0; i < botonSumar.length; i++) {
-        crearBotonSumar(botonSumar[i], i);
-    }
-}
-
-
-let botonRestar = document.getElementsByClassName("cart-item_subtract");
-
-if (botonRestar[0]) {
-    for (let i = 0; i < carrito.length; i++) {
-        crearBotonRestar(botonRestar[i], i);
-    }
-}
-
-
-// Hago lo mismo para eliminar elementos del carrito
-
-function crearBotonEliminar(boton, i) {
-    boton.addEventListener("click", eliminarItem);
-
-    function eliminarItem() {
-
-        sumarPrecio(- carrito[i].precio * carrito[i].cantidadEnCarrito);
-
-        numeroCarrito = numeroCarrito - carrito[i].cantidadEnCarrito;
-        numeroCarritoHTML.innerHTML = numeroCarrito;
-
-        localStorage.setItem("numeroCarrito", numeroCarrito);
-
-        carrito.splice(i, 1);
-
-        // accedo al HTML usando clase para tener una colección de segmentos HTML de cada producto en el carrito
-        let itemsCarritoHTML = carritoContenido.getElementsByClassName("item-carrito");
-
-        // borro el producto seleccionado del carrito
-        itemsCarritoHTML[i].remove();
-
-        localStorage.setItem("carrito", JSON.stringify(carrito));
-        localStorage.setItem("carritoHTML", carritoContenido.innerHTML);
-    }
-}
-
-let botonEliminar = document.getElementsByClassName("cart-item_delete");
-
-if (botonEliminar[0]) {
-    for (let i = 0; i < carrito.length; i++) {
-        crearBotonEliminar(botonEliminar[i], i);
-    }
-}
+carrito.forEach((producto) => {
+    crearBotonesCarrito(producto);
+});
 
 
 /* CATALOGO Y BOTONES PARA AGREGAR AL CARRITO */
@@ -277,11 +274,11 @@ const pedirProductos = async () => {
                             </div>
                             
                             <div class="eliminar-item">
-                                <a href="carrito.html">
+                                
                                     <button class="cart-item_delete btn p-0">
                                         <img src="../assets/img/bin.png" alt="Eliminar producto">
                                     </button>
-                                </a>
+                                
                             </div>
                         </div>
                     </div>
@@ -338,7 +335,7 @@ if (botonVaciar) {
             text: 'Se eliminaron todos los elementos del carrito',
             showConfirmButton: false,
             footer: '<a href="../index.html#catalogo" class="fw-bold fs-5">Volver al catálogo</a>'
-          })
+        })
     }
 }
 
