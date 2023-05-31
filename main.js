@@ -32,6 +32,9 @@ function sumarPrecio(precioProducto) {
     totalCompra.innerHTML = `${precioTotal}`;
 }
 
+
+/* BOTONES CARRITO */
+
 // Defino funciones que generen eventos para Sumar y Restar la cantidad de items en el carrito de un determinado producto. Los argumentos son un botón y un índice.
 
 function crearBotonSumar(boton, i) {
@@ -132,6 +135,9 @@ if (botonEliminar[0]) {
     }
 }
 
+
+/* CATALOGO Y BOTONES PARA AGREGAR AL CARRITO */
+
 // Defino una función para agregar un producto al array carrito, guardarlo en el Local Storage y sumar su precio al costo total
 function agregarCarrito(producto) {
 
@@ -169,20 +175,31 @@ function agregarCarrito(producto) {
     sumarPrecio(producto.precio);
 }
 
+
+/* FILTROS */
+
 // Creo dos arrays: uno con los tipos de productos y otro con las temáticas (ordenados alfabéticamente)
 
-const tipos = ["almohadon","cuaderno"];
+const tipos = ["almohadon", "cuaderno"];
 const tematicas = ["Alicia en el País de las Maravillas", "Harry Potter", "Lilo y Stitch", "Mario Bros", "Marvel", "Sailor Moon", "Studio Ghibli"];
 
 // Accedo a los botones de la sección de filtros
 let botonesFiltros = document.getElementsByClassName("boton-filtro");
 
 // Creo evento para cada opción de filtro
-for (let i = 0; i< botonesFiltros.length; i++){
+for (let i = 0; i < botonesFiltros.length; i++) {
     botonesFiltros[i].addEventListener('click', () => {
-        
+        let productosBorrados = document.querySelectorAll(`#lista-productos > :not(.${botonesFiltros[i].id})`);
+
+        for (let i = 0; i< productosBorrados.length; i++) {
+            console.log(productosBorrados[i].innerHTML)
+            productosBorrados[i].remove();
+        }
     })
-}
+};
+
+
+/* CATALOGO */
 
 // Accedo al catalogo del HTML
 
@@ -194,21 +211,21 @@ const pedirProductos = async () => {
     const resp = await fetch('lista-de-productos.JSON');
     const listaDeProductos = await resp.json();
 
-    for (let i = 0; i < listaDeProductos.length; i++) {
+    listaDeProductos.forEach(producto => {
         let articulo = document.createElement("article");
-        articulo.className = "articulo-catalogo";
+        articulo.className = `${producto.tipo} ${producto.tematica} articulo-catalogo`;
         articulo.innerHTML = `
-        <img src= \"${listaDeProductos[i].imagen}\" alt="${listaDeProductos[i].nombre}">
+        <img src= \"${producto.imagen}\" alt="${producto.nombre}">
         <div class="articulo-descripcion">
-            <h6 class="articulo-nombre"> ${listaDeProductos[i].nombre} </h6>
-            <p>$ ${listaDeProductos[i].precio}</p>
+            <h6 class="articulo-nombre"> ${producto.nombre} </h6>
+            <p>$ ${producto.precio}</p>
             <button class="btn boton-carrito boton-agregar-carrito">
                 Agregar al carrito
             </button>
         </div>
         `
         catalogo.append(articulo);
-    }
+    });
 
     // Defino un evento que agregue un producto al carrito al apretar el botón
     let botonCarrito = document.getElementsByClassName("boton-agregar-carrito");
@@ -231,6 +248,7 @@ const pedirProductos = async () => {
                 // agrego el elemento al carrito en HTML
 
                 let itemCarrito = document.createElement("div");
+                itemCarrito.id = `producto-${listaDeProductos[i].id}`;
                 itemCarrito.className = "item-carrito card mb-3";
                 itemCarrito.innerHTML = `
                 <div class="row g-0 d-flex align-items-center">

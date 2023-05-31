@@ -124,12 +124,16 @@
     }
 }
 
-.main-links-hover {
-    li {
-        &:hover {
-            opacity: 65%;
-            color: $color_hover-links;
-        }
+.boton-filtro{
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    text-align: left;
+    
+    &:hover {
+        opacity: 65%;
+        color: $color_hover-links;
     }
 }
 

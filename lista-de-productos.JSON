@@ -1,107 +1,119 @@
 [
     {
+        "id": 1,
         "nombre": "Gato de Cheshire",
         "tipo": "almohadon",
-        "tematica": "Alicia en el País de las Maravillas",
+        "tematica": "alicia-en-el-pais-de-las-maravillas",
         "imagen": "assets/img/gato-cheshire-azul.jpg",
         "precio": 2600,
         "cantidadEnCarrito": 0
     },
 
     {
+        "id": 2,
         "nombre": "Stitch",
         "tipo": "almohadon",
-        "tematica": "Lilo y Stitch",
+        "tematica": "lilo-y-stitch",
         "imagen": "assets/img/stitch.jpg",
         "precio": 2600,
         "cantidadEnCarrito": 0
     },
 
     {
+        "id": 3,
         "nombre": "Hongo Mario Bros",
         "tipo": "almohadon",
-        "tematica": "Mario Bros",
+        "tematica": "mario-bros",
         "imagen": "assets/img/mario-hongos.jpg",
         "precio": 2600,
         "cantidadEnCarrito": 0
     },
 
     {
+        "id": 4,
         "nombre": "Sailor Moon",
         "tipo": "almohadon",
-        "tematica": "Sailor Moon",
+        "tematica": "sailor-moon",
         "imagen": "assets/img/sailor-moon.jpg",
         "precio": 2600,
         "cantidadEnCarrito": 0
     },
 
     {
+        "id": 5,
         "nombre": "Combo Harry, Ron y Hermione",
         "tipo": "almohadon",
-        "tematica": "Harry Potter",
+        "tematica": "harry-potter",
         "imagen": "assets/img/harry-potter-personajes.jpg",
         "precio": 7600,
         "cantidadEnCarrito": 0
     },
 
     {
+        "id": 6,
         "nombre": "Cuaderno Totoro",
         "tipo": "cuaderno",
-        "tematica": "Studio Ghibli",
+        "tematica": "studio-ghibli",
         "imagen": "assets/img/cuaderno-totoro.jpg",
         "precio": 2500,
         "cantidadEnCarrito": 0
     },
 
     {
+        "id": 7,
         "nombre": "Combo Mario Bros",
         "tipo": "almohadon",
-        "tematica": "Mario Bros",
+        "tematica": "mario-bros",
         "imagen": "assets/img/mario-bros.jpg",
         "precio": 7600,
         "cantidadEnCarrito": 0
     },
 
     {
+        "id": 8,
         "nombre": "Hedwig",
         "tipo": "almohadon",
-        "tematica": "Harry Potter",
+        "tematica": "harry-potter",
         "imagen": "assets/img/hedwig.jpg",
         "precio": 2600,
         "cantidadEnCarrito": 0
     },
 
     {
+        "id": 9,
         "nombre": "Torta de cumpleaños de Harry",
         "tipo": "almohadon",
-        "tematica": "Harry Potter",
+        "tematica": "harry-potter",
         "imagen": "assets/img/harry-torta.jpg",
         "precio": 2600,
         "cantidadEnCarrito": 0
     },
 
     {
+        "id": 10,
         "nombre": "Cuaderno Harry Potter",
         "tipo": "cuaderno",
-        "tematica": "Harry Potter",
+        "tematica": "harry-potter",
         "imagen": "assets/img/cuaderno-harry-potter.jpg",
         "precio": 2500,
         "cantidadEnCarrito": 0
     },
 
     {
+        "id": 11,
         "nombre": "Loki",
         "tipo": "almohadon",
-        "tematica": "Marvel",
+        "tematica": "marvel",
         "imagen": "assets/img/loki.jpg",
         "precio": 2600,
         "cantidadEnCarrito": 0
     },
 
     {
+        "id": 12,
         "nombre": "Alicia",
         "tipo": "almohadon",
-        "tematica": "Alicia en el País de las Maravillas",
+        "tematica": "alicia-en-el-pais-de-las-maravillas",
         "imagen": "assets/img/alicia.jpg",
         "precio": 2600,
         "cantidadEnCarrito": 0
