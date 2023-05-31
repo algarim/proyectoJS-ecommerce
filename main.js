@@ -92,22 +92,22 @@ function crearBotonesCarrito(producto) {
         function eliminarItem() {
 
             sumarPrecio(- producto.precio * producto.cantidadEnCarrito);
-    
+
             numeroCarrito = numeroCarrito - producto.cantidadEnCarrito;
             numeroCarritoHTML.innerHTML = numeroCarrito;
-    
+
             localStorage.setItem("numeroCarrito", numeroCarrito);
-    
+
             // elimino producto del carrito
             indiceDelProducto = carrito.indexOf(producto);
-            carrito.splice(indiceDelProducto,1);
-            
+            carrito.splice(indiceDelProducto, 1);
+
             // elimino item del html
             productoEnCarrito.remove();
-    
+
             localStorage.setItem("carrito", JSON.stringify(carrito));
 
-            if (numeroCarrito == 0){
+            if (numeroCarrito == 0) {
                 carritoContenido.innerHTML = `<p class="center-text">Tu carrito está vacío</p>`
             }
             localStorage.setItem("carritoHTML", carritoContenido.innerHTML);
@@ -119,7 +119,7 @@ function crearBotonesCarrito(producto) {
                 position: "right",
                 style: {
                     background: "#FF5858",
-                  }
+                }
             }).showToast();
         }
     }
@@ -202,6 +202,18 @@ for (let i = 0; i < botonesFiltros.length; i++) {
 };
 
 
+/* BOTON ORDENAR */
+
+let botonOrdenar = document.getElementById('select-ordenar');
+
+if (botonOrdenar) {
+    botonOrdenar.addEventListener('change', (event) => {
+        catalogo.innerHTML = '';
+        pedirProductos(event.target.value);
+    })
+}
+
+
 /* CATALOGO */
 
 // Accedo al catalogo del HTML
@@ -210,9 +222,58 @@ let catalogo = document.getElementById("lista-productos");
 
 // Defino una función asincrónica que recoja los productos de la API (en este caso, del JSON local) y los liste en el catálogo
 
-const pedirProductos = async () => {
+const pedirProductos = async (orden) => {
     const resp = await fetch('lista-de-productos.JSON');
     const listaDeProductos = await resp.json();
+
+    if (orden == "A-Z") {
+        listaDeProductos.sort((a, b) => {
+            if (a.nombre > b.nombre) {
+                return 1;
+            }
+            if (a.nombre < b.nombre) {
+                return -1;
+            }
+            // a must be equal to b
+            return 0;
+        })
+    } 
+    
+    else if (orden == "Z-A") {
+        listaDeProductos.sort((a, b) => {
+            if (a.nombre > b.nombre) {
+                return -1;
+            }
+            if (a.nombre < b.nombre) {
+                return 1;
+            }
+            return 0;
+        })
+    } 
+    
+    else if (orden == "Precio ascendente") {
+        listaDeProductos.sort((a, b) => {
+            if (a.precio > b.precio) {
+                return 1;
+            }
+            if (a.precio < b.precio) {
+                return -1;
+            }
+            return 0;
+        })
+    }
+
+    else if (orden == "Precio descendente") {
+        listaDeProductos.sort((a, b) => {
+            if (a.precio > b.precio) {
+                return -1;
+            }
+            if (a.precio < b.precio) {
+                return 1;
+            }
+            return 0;
+        })
+    }
 
     listaDeProductos.forEach(producto => {
         let articulo = document.createElement("article");
