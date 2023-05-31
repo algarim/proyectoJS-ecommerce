@@ -191,7 +191,7 @@ for (let i = 0; i < botonesFiltros.length; i++) {
     botonesFiltros[i].addEventListener('click', () => {
         let productosBorrados = document.querySelectorAll(`#lista-productos > :not(.${botonesFiltros[i].id})`);
 
-        for (let i = 0; i< productosBorrados.length; i++) {
+        for (let i = 0; i < productosBorrados.length; i++) {
             console.log(productosBorrados[i].innerHTML)
             productosBorrados[i].remove();
         }
@@ -286,6 +286,13 @@ const pedirProductos = async () => {
 
                 localStorage.setItem("carritoHTML", carritoContenido.innerHTML);
             }
+
+            Toastify({
+                text: `${listaDeProductos[i].nombre} fue agregado al carrito`,
+                duration: 3000,
+                gravity: "bottom",
+                position: "right",
+            }).showToast();
         }
     }
 }

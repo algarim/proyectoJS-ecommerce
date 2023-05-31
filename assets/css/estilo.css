@@ -70,6 +70,10 @@ a {
   display: none;
 }
 
+.toastify {
+  font-size: 1rem;
+}
+
 @font-face {
   font-family: Old Press Original;
   src: url("../fonts/old-press-original.otf");
@@ -446,6 +450,7 @@ a {
   background-color: transparent;
   border: 0;
   text-align: left;
+  color: inherit;
 }
 .boton-filtro:hover {
   opacity: 65%;
